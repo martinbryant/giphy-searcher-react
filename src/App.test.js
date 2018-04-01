@@ -24,8 +24,10 @@ describe('App component tests', () => {
   it('renders a div with the class "search" ', () => {
     expect(component().find('div').filterWhere(n => n.hasClass('search')).length).toBe(1);
   })
+  it('renders a form with the class "search-form" ', () => {
+    expect(component().find('form').first().hasClass('search-form')).toBe(true);
+  })
 
 
 
-  // ReactDOM.unmountComponentAtNode(div);
 });
