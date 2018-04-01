@@ -9,6 +9,8 @@ class App extends Component {
         <div className="title">
           <h1>Giphy Searcher</h1>
         </div>
+        <div className="search">
+        </div>
       </div>
     );
   }
