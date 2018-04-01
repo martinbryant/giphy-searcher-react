@@ -12,12 +12,15 @@ Enzyme.configure({ adapter: new Adapter() });
 const component = () => shallow(<App />);
 
 describe('App component tests', () => {
-  it('renders a div', () => {
-    expect(component().find('div').length).toBe(1);
+  it('renders an outer div with the class "container"', () => {
+    expect(component().find('div').first().hasClass('container')).toBe(true);
   });
-  it('with a class of "container" ', () => {
-    expect(component().find('div').hasClass('container')).toBe(true);
+  it('renders a div with the class "title" ', () => {
+    expect(component().find('div').filterWhere(n => n.hasClass('title')).length).toBe(1);
   });
+  it('renders an h1 tag with the text "Giphy Searcher" ', () => {
+    expect(component().find('h1').first().text()).toBe('Giphy Searcher');
+  })
 
 
   // ReactDOM.unmountComponentAtNode(div);
