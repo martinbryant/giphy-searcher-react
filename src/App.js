@@ -13,12 +13,13 @@ class App extends Component {
           <form className="search-form">
             <input className="search-input" type="text" />
             <input className="search-button" type="submit">Search Giphy</input>
-
           </form>
         </div>
         <div className="result-display">
           <div className="result-grid">
           </div>
+        </div>
+        <div className="loading-section">
         </div>
       </div>
     );
