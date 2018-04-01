@@ -20,7 +20,11 @@ describe('App component tests', () => {
   });
   it('renders an h1 tag with the text "Giphy Searcher" ', () => {
     expect(component().find('h1').first().text()).toBe('Giphy Searcher');
+  });
+  it('renders a div with the class "search" ', () => {
+    expect(component().find('div').filterWhere(n => n.hasClass('search')).length).toBe(1);
   })
+
 
 
   // ReactDOM.unmountComponentAtNode(div);
