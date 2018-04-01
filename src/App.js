@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="container">
         <div className="title">
-
+          <h1>Giphy Searcher</h1>
         </div>
       </div>
     );
