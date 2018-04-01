@@ -16,6 +16,10 @@ class App extends Component {
 
           </form>
         </div>
+        <div className="result-display">
+          <div className="result-grid">
+          </div>
+        </div>
       </div>
     );
   }
