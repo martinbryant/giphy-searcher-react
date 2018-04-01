@@ -11,6 +11,9 @@ class App extends Component {
         </div>
         <div className="search">
           <form className="search-form">
+            <input className="search-input" type="text" />
+            <input className="search-button" type="submit">Search Giphy</input>
+
           </form>
         </div>
       </div>
