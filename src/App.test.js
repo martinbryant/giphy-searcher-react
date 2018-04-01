@@ -42,6 +42,9 @@ describe('App component tests', () => {
   it('renders a div with the class "result-grid"', () => {
     expect(component().find('div').filterWhere(n => n.hasClass('result-grid')).length).toBe(1);
   })
+  it('renders a div with the class "loading-section"', () => {
+    expect(component().find('div').filterWhere(n => n.hasClass('loading-section')).length).toBe(1);
+  })
 
 
 
