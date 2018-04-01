@@ -27,6 +27,12 @@ describe('App component tests', () => {
   it('renders a form with the class "search-form" ', () => {
     expect(component().find('form').first().hasClass('search-form')).toBe(true);
   })
+  it('renders an input with the class "search-input" ', () => {
+    expect(component().find('input').filterWhere(n => n.hasClass('search-form') & n.type('text')).length).toBe(1);
+  })
+  it('renders an input with the class "search-button" and type "submit" ', () => {
+    expect(component().find('input').filterWhere(n => n.hasClass('search-form') & n.type('submit')).length).toBe(1);
+  })
 
 
 
