@@ -24,7 +24,13 @@ const loadedGifList = (state = [], action) => state
 
 const newGifsRecieved = (state = [], action) => state
 
-const loadingStatus = (state = false, action) => state
+const loadingStatus = (state = false, action) => {
+    switch (action.type) {
+        case 'GET_GIF_LIST_STARTED':
+            return true;
+        default: return state
+    }
+}
 
 
 const reducer = combineReducers({
