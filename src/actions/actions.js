@@ -8,4 +8,5 @@ export const loadMoreGifs = () => ({
 });
 
 export const getGifListStarted = () => ({
+    type: 'GET_GIF_LIST_STARTED'
 });
