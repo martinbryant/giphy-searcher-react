@@ -1,8 +1,22 @@
 import { combineReducers } from 'redux';
 
-const searchTerm = (state = "", action) => state
+const searchTerm = (state = "", action) => {
+    switch (action.type) {
+        case 'SUBMIT_SEARCH':
+            return action.searchTerm === '' ? state : action.searchTerm
+        default:
+            return state
+    }
+}
 
-const searchError = (state = "", action) => state
+const searchError = (state = "", action) => {
+    switch (action.type) {
+        case 'SUBMIT_SEARCH':
+            return action.searchTerm === '' ? 'Search cannot be blank' : ''
+        default:
+            return state;
+    }
+}
 
 const gifsRequired = (state = 5, action) => state
 
