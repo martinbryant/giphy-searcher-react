@@ -28,7 +28,8 @@ describe('Reducer tests ', () => {
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],
-            newGifsRecieved: []
+            newGifsRecieved: [],
+            loadingStatus: false
         }
         const action = {
             type: 'SUBMIT_SEARCH',
@@ -38,11 +39,12 @@ describe('Reducer tests ', () => {
     });
     it('should handle Submit Search with a blank string', () => {
         const expected = {
-            searchTerm: '',
+            searchTerm: 'old search',
             searchError: 'Search cannot be blank',
             gifsRequired: 5,
             loadedGifList: [],
             newGifsRecieved: [],
+            loadingStatus: false
         }
         const action = {
             type: 'SUBMIT_SEARCH',
