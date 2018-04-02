@@ -121,7 +121,7 @@ describe('Reducer tests', () => {
             loadingStatus: false
         }
         const action = {
-            type: 'GET_GIF_LIST_SUCCESS',
+            type: 'GET_GIF_LIST_FAILURE',
             error: 'The returned network error'
         }
         expect(reducer(oldState, action)).toEqual(expected);
