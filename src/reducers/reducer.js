@@ -10,13 +10,16 @@ const loadedGifList = (state = [], action) => state
 
 const newGifsRecieved = (state = [], action) => state
 
+const loadingStatus = (state = false, action) => state
+
 
 const reducer = combineReducers({
     searchTerm,
     searchError,
     gifsRequired,
     loadedGifList,
-    newGifsRecieved
+    newGifsRecieved,
+    loadingStatus
 })
 
 export default reducer;
