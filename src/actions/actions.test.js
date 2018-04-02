@@ -16,6 +16,12 @@ describe('Action creator tests ', () => {
         }
         expect(actions.loadMoreGifs()).toEqual(expected);
     });
+    it('creates an action for Get Gif List Not Asked', () => {
+        const expected = {
+            type: 'GET_GIF_LIST_NOT_ASKED'
+        }
+        expect(actions.getGifListNotAsked()).toEqual(expected);
+    });
     it('creates an action for Get Gif List Started', () => {
         const expected = {
             type: 'GET_GIF_LIST_STARTED'
