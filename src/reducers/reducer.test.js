@@ -9,8 +9,8 @@ describe('Reducer tests ', () => {
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],
-            newGifsReceieved: []
+            newGifsRecieved: []
         }
-        expect(reducer.submitSearch('search')).toEqual(expected);
+        expect(reducer(undefined, {})).toEqual(expected);
     });
 });
