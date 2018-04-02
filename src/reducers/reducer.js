@@ -22,7 +22,7 @@ const gifsRequired = (state = 5, action) => state
 
 const loadedGifList = (state = [], action) => state
 
-const newGifsRecieved = (state = [], action) => state
+const loadingError = (state = '', action) => state
 
 const loadingStatus = (state = false, action) => {
     switch (action.type) {
@@ -38,7 +38,7 @@ const reducer = combineReducers({
     searchError,
     gifsRequired,
     loadedGifList,
-    newGifsRecieved,
+    loadingError,
     loadingStatus
 })
 

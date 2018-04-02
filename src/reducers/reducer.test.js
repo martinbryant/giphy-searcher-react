@@ -2,13 +2,13 @@ import expect from 'expect';
 
 import reducer from './reducer';
 
-describe('Reducer tests ', () => {
+describe('Reducer tests', () => {
     const oldState = {
         searchTerm: 'old search',
         searchError: '',
         gifsRequired: 5,
         loadedGifList: [],
-        newGifsRecieved: [],
+        loadingError: '',
         loadingStatus: false
     }
     it('returns the initial state', () => {
@@ -17,7 +17,7 @@ describe('Reducer tests ', () => {
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],
-            newGifsRecieved: [],
+            loadingError: '',
             loadingStatus: false
         }
         expect(reducer(undefined, {})).toEqual(expected);
@@ -28,7 +28,7 @@ describe('Reducer tests ', () => {
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],
-            newGifsRecieved: [],
+            loadingError: '',
             loadingStatus: false
         }
         const action = {
@@ -43,7 +43,7 @@ describe('Reducer tests ', () => {
             searchError: 'Search cannot be blank',
             gifsRequired: 5,
             loadedGifList: [],
-            newGifsRecieved: [],
+            loadingError: '',
             loadingStatus: false
         }
         const action = {
@@ -58,11 +58,26 @@ describe('Reducer tests ', () => {
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],
-            newGifsRecieved: [],
+            loadingError: '',
             loadingStatus: true
         }
         const action = {
             type: 'GET_GIF_LIST_STARTED'
+        }
+        expect(reducer(oldState, action)).toEqual(expected);
+    });
+    it('should handle Get Gif List Success', () => {
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: '',
+            loadingStatus: false
+        }
+        const action = {
+            type: 'GET_GIF_LIST_SUCCESS',
+            gifList: []
         }
         expect(reducer(oldState, action)).toEqual(expected);
     });
