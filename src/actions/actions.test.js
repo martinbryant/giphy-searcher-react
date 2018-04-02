@@ -11,4 +11,10 @@ describe('Action creator tests ', () => {
         }
         expect(actions.submitSearch('search')).toEqual(expected);
     });
+    it('creates an action to Load More Gifs', () => {
+        const expected = {
+            type: 'LOAD_MORE_GIFS'
+        }
+        expect(actions.loadMoreGifs()).toEqual(expected);
+    });
 });
