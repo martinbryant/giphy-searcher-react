@@ -4,5 +4,5 @@ export const submitSearch = searchTerm => ({
 });
 
 export const loadMoreGifs = () => ({
-
+    type: 'LOAD_MORE_GIFS'
 });
