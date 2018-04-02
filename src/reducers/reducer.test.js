@@ -66,6 +66,28 @@ describe('Reducer tests', () => {
         }
         expect(reducer(oldState, action)).toEqual(expected);
     });
+    it('should handle Get Gif List Started and clear any loadingError', () => {
+        const state = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: 'The returned network error',
+            loadingStatus: false
+        }
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: '',
+            loadingStatus: true
+        }
+        const action = {
+            type: 'GET_GIF_LIST_STARTED'
+        }
+        expect(reducer(state, action)).toEqual(expected);
+    });
     it('should handle Get Gif List Success and add recieved list to an empty list', () => {
         const expected = {
             searchTerm: 'old search',
