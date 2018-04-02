@@ -30,4 +30,12 @@ describe('Action creator tests ', () => {
         }
         expect(actions.getGifListSuccess(gifList)).toEqual(expected);
     });
+    it('creates an action for Get Gif List Success', () => {
+        const error = 'error message'
+        const expected = {
+            type: 'GET_GIF_LIST_FAILURE',
+            error: 'error message'
+        }
+        expect(actions.getGifListFailure(error)).toEqual(expected);
+    });
 });

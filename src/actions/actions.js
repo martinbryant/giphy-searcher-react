@@ -15,3 +15,7 @@ export const getGifListSuccess = gifList => ({
     type: 'GET_GIF_LIST_SUCCESS',
     gifList
 });
+
+export const getGifListFailure = error => ({
+
+});
