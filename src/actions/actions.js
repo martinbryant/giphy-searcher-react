@@ -8,7 +8,7 @@ export const loadMoreGifs = () => ({
 });
 
 export const getGifListNotAsked = () => ({
-
+    type: 'GET_GIF_LIST_NOT_ASKED'
 });
 
 export const getGifListStarted = () => ({
