@@ -4,7 +4,6 @@ import * as actions from './actions';
 
 describe('Action creator tests ', () => {
     it('creates an action to Submit Search', () => {
-        const searchTerm = 'search'
         const expected = {
             type: 'SUBMIT_SEARCH',
             searchTerm: 'search'
@@ -22,5 +21,13 @@ describe('Action creator tests ', () => {
             type: 'GET_GIF_LIST_STARTED'
         }
         expect(actions.getGifListStarted()).toEqual(expected);
+    });
+    it('creates an action for Get Gif List Success', () => {
+        const gifList = {}
+        const expected = {
+            type: 'GET_GIF_LIST_SUCCESS',
+            gifList
+        }
+        expect(actions.getGifListSuccess(gifList)).toEqual(expected);
     });
 });
