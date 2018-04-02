@@ -17,4 +17,10 @@ describe('Action creator tests ', () => {
         }
         expect(actions.loadMoreGifs()).toEqual(expected);
     });
+    it('creates an action for Get Gif List Started', () => {
+        const expected = {
+            type: 'GET_GIF_LIST_STARTED'
+        }
+        expect(actions.getGifListStarted()).toEqual(expected);
+    });
 });
