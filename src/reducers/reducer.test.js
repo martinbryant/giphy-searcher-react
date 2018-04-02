@@ -52,4 +52,18 @@ describe('Reducer tests ', () => {
         }
         expect(reducer(oldState, action)).toEqual(expected);
     });
+    it('should handle Load More Gifs ', () => {
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            newGifsRecieved: [],
+            loadingStatus: true
+        }
+        const action = {
+            type: 'LOAD_MORE_GIFS'
+        }
+        expect(reducer(oldState, action)).toEqual(expected);
+    });
 });
