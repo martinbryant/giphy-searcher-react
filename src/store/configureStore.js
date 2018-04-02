@@ -3,7 +3,7 @@ import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import app from '../reducers/app-reducer';
+import reducer from '../reducers/reducer';
 import giphyApi from '../api/giphyApi';
 
 const middleware = composeWithDevTools(applyMiddleware(
@@ -12,5 +12,5 @@ const middleware = composeWithDevTools(applyMiddleware(
 ))
 
 export default function configureStore(initialState) {
-    return createStore(app, initialState, middleware());
+    return createStore(reducer, initialState, middleware());
 }
