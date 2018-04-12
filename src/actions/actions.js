@@ -24,3 +24,5 @@ export const getGifListFailure = error => ({
     type: 'GET_GIF_LIST_FAILURE',
     error
 });
+
+export const gifResponseToGifUrlList = gifResponse => []
