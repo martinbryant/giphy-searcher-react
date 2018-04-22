@@ -83,13 +83,14 @@ describe('getGifList tests', () => {
         store.clearActions();
     })
     it('should dispatch getGifListStarted action', () => {
-        const expected = [{
+        const expected = {
             type: 'GET_GIF_LIST_STARTED'
-        }]
+        }
         return store.dispatch(actions.getGifList()).then(() => {
-            expect(store.getActions()).toEqual(expected);
+            expect(store.getActions()).toContainEqual(expected);
         });
     });
+
 });
 
 
