@@ -82,25 +82,29 @@ describe('getGifList tests', () => {
     const mockStore = configureMockStore(middlewares);
     const store = mockStore({});
 
-    beforeEach(() => {
-        fetchMock.get('*', { data: "response" });
-    })
+
     afterEach(() => {
         store.clearActions();
         fetchMock.restore()
     })
     it('should dispatch getGifListStarted action', () => {
+        fetchMock.get('*', {});
         const expected = actions.getGifListStarted();
         return store.dispatch(actions.getGifList()).then(() => {
             expect(store.getActions()).toContainEqual(expected);
         });
     });
     it('should dispatch getGifListSuccess action if successful response', () => {
-        const expected = actions.getGifListSuccess()
+        fetchMock.get('*', { body: gifRes });
+        const gifList = gifRes;
+
+        const expected = actions.getGifListSuccess(gifList)
         return store.dispatch(actions.getGifList()).then((res) => {
             expect(store.getActions()).toContainEqual(expected);
         });
+
     });
+
 
 });
 
