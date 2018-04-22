@@ -31,12 +31,12 @@ const loadedGifList = (state = [], action) => {
     }
 }
 
-const loadingError = (state = '', action) => {
+const loadingError = (state = {}, action) => {
     switch (action.type) {
         case 'GET_GIF_LIST_FAILURE':
             return action.error
         case 'GET_GIF_LIST_STARTED':
-            return ''
+            return {}
         default:
             return state;
     }

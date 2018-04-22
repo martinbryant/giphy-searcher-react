@@ -8,7 +8,7 @@ describe('Reducer tests', () => {
         searchError: '',
         gifsRequired: 5,
         loadedGifList: [],
-        loadingError: '',
+        loadingError: {},
         loadingStatus: false
     }
     it('returns the initial state', () => {
@@ -17,7 +17,7 @@ describe('Reducer tests', () => {
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],
-            loadingError: '',
+            loadingError: {},
             loadingStatus: false
         }
         expect(reducer(undefined, {})).toEqual(expected);
@@ -28,7 +28,7 @@ describe('Reducer tests', () => {
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],
-            loadingError: '',
+            loadingError: {},
             loadingStatus: false
         }
         const action = {
@@ -43,7 +43,7 @@ describe('Reducer tests', () => {
             searchError: 'Search cannot be blank',
             gifsRequired: 5,
             loadedGifList: [],
-            loadingError: '',
+            loadingError: {},
             loadingStatus: false
         }
         const action = {
@@ -58,7 +58,7 @@ describe('Reducer tests', () => {
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],
-            loadingError: '',
+            loadingError: {},
             loadingStatus: true
         }
         const action = {
@@ -72,7 +72,7 @@ describe('Reducer tests', () => {
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],
-            loadingError: 'The returned network error',
+            loadingError: Error('The returned network error'),
             loadingStatus: false
         }
         const expected = {
@@ -80,7 +80,7 @@ describe('Reducer tests', () => {
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],
-            loadingError: '',
+            loadingError: {},
             loadingStatus: true
         }
         const action = {
@@ -95,7 +95,7 @@ describe('Reducer tests', () => {
             gifsRequired: 5,
             loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
                 'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
-            loadingError: '',
+            loadingError: {},
             loadingStatus: false
         }
         const action = {
@@ -112,7 +112,7 @@ describe('Reducer tests', () => {
             gifsRequired: 5,
             loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
                 'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
-            loadingError: '',
+            loadingError: {},
             loadingStatus: false
         }
         const expected = {
@@ -123,7 +123,7 @@ describe('Reducer tests', () => {
                 'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
                 'https://media1.giphy.com/media/3ohs7GPbaDx10LHIVG/200_d.gif',
                 'https://media1.giphy.com/media/3ohs7GPbaDx10LHIVG/200_d.gif'],
-            loadingError: '',
+            loadingError: {},
             loadingStatus: false
         }
         const action = {
@@ -139,12 +139,12 @@ describe('Reducer tests', () => {
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],
-            loadingError: 'The returned network error',
+            loadingError: Error('The returned network error'),
             loadingStatus: false
         }
         const action = {
             type: 'GET_GIF_LIST_FAILURE',
-            error: 'The returned network error'
+            error: Error('The returned network error')
         }
         expect(reducer(oldState, action)).toEqual(expected);
     });
