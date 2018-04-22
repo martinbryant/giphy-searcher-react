@@ -104,7 +104,16 @@ describe('getGifList tests', () => {
         });
 
     });
+    it('should dispatch getGifListFailure action if unsuccessful response', () => {
+        fetchMock.get('*', { status: 402 });
+        const gifList = gifRes;
 
+        const expected = actions.getGifListFailure(new TypeError('Cannot read property \'on\' of undefined'));
+        return store.dispatch(actions.getGifList()).then((res) => {
+            expect(store.getActions()).toContainEqual(expected);
+        });
+
+    });
 
 });
 

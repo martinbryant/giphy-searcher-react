@@ -35,6 +35,8 @@ export const getGifList = () => {
         dispatch(getGifListStarted());
         return apiRequestGifList().then((res) => {
             dispatch(getGifListSuccess(res))
-        })
+        }).catch(err => {
+
+        });
     }
 }
