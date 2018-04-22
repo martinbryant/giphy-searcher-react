@@ -1,6 +1,13 @@
 import expect from 'expect';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 
 import * as actions from './actions';
+import { resolve } from 'path';
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
+const store = mockStore({});
 
 describe('Action creator tests ', () => {
     it('creates an action to Submit Search', () => {
@@ -44,18 +51,49 @@ describe('Action creator tests ', () => {
         }
         expect(actions.getGifListFailure(error)).toEqual(expected);
     });
-    it('turns a gifResponse to an array of gif Urls', () => {
+
+});
+describe('Action helper tests ', () => {
+    it('turns a valid gifResponse to an array of gif Urls', () => {
         const gifResponse = gifRes;
         const expected = ["http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif",
             "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif"]
         expect(actions.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
     });
+    it('turns an invalid gifResponse to an Error');
+    it('getGifList dispatches getGifListStarted action');
+    it('getGifList calls apiRequestGifList once'
+        // var result = async () => {
+        //     try {
+        //         return await actions.apiRequestGifList();
+        //     } catch (err) {
+        //         return err;
+        //     }
+        // }
+        // expect(result()).toEqual(Promise.resolve)
+    );
+    it('requestToApi dispatches getGifListSuccess action if successful');
+    it('requestToApi dispatches getGifListSuccess action never if unsuccessful');
+    it('requestToApi dispatches getGifListFailure action once if unsuccessful');
+    it('requestToApi dispatches getGifListFailure action never if successful');
+
+});
+describe('getGifList tests', () => {
+    afterEach(() => {
+        store.clearActions();
+    })
+    it('should dispatch getGifListStarted action', () => {
+        const expected = [{
+            type: 'GET_GIF_LIST_STARTED'
+        }]
+        return store.dispatch(actions.getGifList()).then(() => {
+            expect(store.getActions()).toEqual(expected);
+        });
+    });
 });
 
-// response has an array called 'data'
-// each item in array has a 'images' object
-// 'images' object has a property 'fixed_height_downsampled'
-// 'fixed_height_downsampled' has a property 'url'
+
+// spy on dispatch called with relevant action
 
 let gifRes = {
     "data": [
