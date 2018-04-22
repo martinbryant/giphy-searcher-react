@@ -59,7 +59,11 @@ describe('Action helper tests ', () => {
             "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif"]
         expect(actions.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
     });
-    it('turns an invalid gifResponse to an Error');
+    it('turns an invalid gifResponse to an Error', () => {
+        const gifResponse = [];
+        const expected = new TypeError("Cannot read property \'map\' of undefined");
+        expect(actions.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
+    });
     it('getGifList dispatches getGifListStarted action');
     it('getGifList calls apiRequestGifList once'
         // var result = async () => {
