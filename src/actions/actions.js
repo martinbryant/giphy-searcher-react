@@ -32,6 +32,7 @@ export const apiRequestGifList = () => Promise.reject('resolve')
 
 export const getGifList = () => {
     return dispatch => {
+        dispatch(getGifListStarted());
         return Promise.resolve();
     }
 }
