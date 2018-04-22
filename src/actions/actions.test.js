@@ -1,13 +1,12 @@
 import expect from 'expect';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import fetchMock from 'fetch-mock';
 
 import * as actions from './actions';
 import { resolve } from 'path';
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const store = mockStore({});
+
 
 describe('Action creator tests ', () => {
     it('creates an action to Submit Search', () => {
@@ -79,14 +78,26 @@ describe('Action helper tests ', () => {
 
 });
 describe('getGifList tests', () => {
+    const middlewares = [thunk];
+    const mockStore = configureMockStore(middlewares);
+    const store = mockStore({});
+
+    beforeEach(() => {
+        fetchMock.get('*', { data: "response" });
+    })
     afterEach(() => {
         store.clearActions();
+        fetchMock.restore()
     })
     it('should dispatch getGifListStarted action', () => {
-        const expected = {
-            type: 'GET_GIF_LIST_STARTED'
-        }
+        const expected = actions.getGifListStarted();
         return store.dispatch(actions.getGifList()).then(() => {
+            expect(store.getActions()).toContainEqual(expected);
+        });
+    });
+    it('should dispatch getGifListSuccess action if successful response', () => {
+        const expected = actions.getGifListSuccess()
+        return store.dispatch(actions.getGifList()).then((res) => {
             expect(store.getActions()).toContainEqual(expected);
         });
     });

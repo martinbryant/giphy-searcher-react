@@ -28,11 +28,11 @@ export const getGifListFailure = error => ({
 export const gifResponseToGifUrlList = gifResponse =>
     gifResponse.data.map(n => n.images.fixed_width_downsampled.url)
 
-export const apiRequestGifList = () => Promise.reject('resolve')
+export const apiRequestGifList = () => fetch('api/test');
 
 export const getGifList = () => {
     return dispatch => {
         dispatch(getGifListStarted());
-        return Promise.resolve();
+        return apiRequestGifList();
     }
 }
