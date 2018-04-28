@@ -4,122 +4,138 @@ import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 
 import * as actions from './actions';
-import { resolve } from 'path';
-
-
 
 describe('Action creator tests ', () => {
-    it('creates an action to Submit Search', () => {
+    it('creates an action for Submit Search', () => {
+        const searchTerm = 'new search'
         const expected = {
             type: 'SUBMIT_SEARCH',
-            searchTerm: 'search'
+            searchTerm: 'new serch'
         }
-        expect(actions.submitSearch('search')).toEqual(expected);
+        expect(actions.submitSearch(searchTerm)).toEqual(expected);
     });
-    it('creates an action to Load More Gifs', () => {
+    it('creates an action for Get New Gifs Started', () => {
         const expected = {
-            type: 'LOAD_MORE_GIFS'
+            type: 'GET_NEW_GIFS_STARTED'
         }
-        expect(actions.loadMoreGifs()).toEqual(expected);
+        expect(actions.getNewGifsStarted()).toEqual(expected);
     });
-    it('creates an action for Get Gif List Not Asked', () => {
+    it('creates an action for Get New Gifs Success', () => {
+        const gifList = ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+            'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif']
         const expected = {
-            type: 'GET_GIF_LIST_NOT_ASKED'
-        }
-        expect(actions.getGifListNotAsked()).toEqual(expected);
-    });
-    it('creates an action for Get Gif List Started', () => {
-        const expected = {
-            type: 'GET_GIF_LIST_STARTED'
-        }
-        expect(actions.getGifListStarted()).toEqual(expected);
-    });
-    it('creates an action for Get Gif List Success', () => {
-        const gifList = {}
-        const expected = {
-            type: 'GET_GIF_LIST_SUCCESS',
+            type: 'GET_NEW_GIFS_SUCCESS',
             gifList
         }
-        expect(actions.getGifListSuccess(gifList)).toEqual(expected);
+        expect(actions.getNewGifsSuccess(gifList)).toEqual(expected);
     });
-    it('creates an action for Get Gif List Success', () => {
+    it('creates an action for Get New Gifs Success', () => {
         const error = 'error message'
         const expected = {
-            type: 'GET_GIF_LIST_FAILURE',
+            type: 'GET_NEW_GIFS_FAILURE',
             error: 'error message'
         }
-        expect(actions.getGifListFailure(error)).toEqual(expected);
+        expect(actions.getNewGifsFailure(error)).toEqual(expected);
+    });
+    it('creates an action for Get More Gifs Started', () => {
+        const expected = {
+            type: 'GET_MORE_GIFS_STARTED'
+        }
+        expect(actions.getMoreGifsStarted()).toEqual(expected);
+    });
+    it('creates an action for Get More Gifs Success', () => {
+        const gifList = ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+            'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif']
+        const expected = {
+            type: 'GET_MORE_GIFS_SUCCESS',
+            gifList
+        }
+        expect(actions.getMoreGifsSuccess(gifList)).toEqual(expected);
+    });
+    it('creates an action for Get More Gifs Failure', () => {
+        const error = 'error message'
+        const expected = {
+            type: 'GET_MORE_GIFS_FAILURE',
+            error: 'error message'
+        }
+        expect(actions.getMoreGifsFailure(error)).toEqual(expected);
+    });
+    it('creates an action for Get Trending Gifs Started', () => {
+        const expected = {
+            type: 'GET_TRENDING_GIFS_STARTED'
+        }
+        expect(actions.getTrendingGifsStarted()).toEqual(expected);
+    });
+    it('creates an action for Get Trending Gifs Success', () => {
+        const gifList = ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+            'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif']
+        const expected = {
+            type: 'GET_TRENDING_GIFS_SUCCESS',
+            gifList
+        }
+        expect(actions.getTrendingGifsSuccess(gifList)).toEqual(expected);
+    });
+    it('creates an action for Get Trending Gifs Failure', () => {
+        const error = 'error message'
+        const expected = {
+            type: 'GET_TRENDING_GIFS_FAILURE',
+            error: 'error message'
+        }
+        expect(actions.getTrendingGifsFailure(error)).toEqual(expected);
     });
 
 });
-describe('Action helper tests ', () => {
-    it('turns a valid gifResponse to an array of gif Urls', () => {
-        const gifResponse = gifRes;
-        const expected = ["http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif",
-            "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif"]
-        expect(actions.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
-    });
-    it('turns an invalid gifResponse to an Error', () => {
-        const gifResponse = [];
-        const expected = new TypeError("Cannot read property \'map\' of undefined");
-        expect(actions.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
-    });
-    it('getGifList dispatches getGifListStarted action');
-    it('getGifList calls apiRequestGifList once'
-        // var result = async () => {
-        //     try {
-        //         return await actions.apiRequestGifList();
-        //     } catch (err) {
-        //         return err;
-        //     }
-        // }
-        // expect(result()).toEqual(Promise.resolve)
-    );
-    it('requestToApi dispatches getGifListSuccess action if successful');
-    it('requestToApi dispatches getGifListSuccess action never if unsuccessful');
-    it('requestToApi dispatches getGifListFailure action once if unsuccessful');
-    it('requestToApi dispatches getGifListFailure action never if successful');
 
-});
-describe('getGifList tests', () => {
-    const middlewares = [thunk];
-    const mockStore = configureMockStore(middlewares);
-    const store = mockStore({});
+// describe('gifResponseToGifUrlList tests ', () => {
+//     it('turns a valid gifResponse to an array of gif Urls', () => {
+//         const gifResponse = gifRes;
+//         const expected = ["http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif",
+//             "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif"]
+//         expect(actions.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
+//     });
+//     it('turns an invalid gifResponse to an Error', () => {
+//         const gifResponse = [];
+//         const expected = new TypeError("Cannot read property \'map\' of undefined");
+//         expect(actions.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
+//     });
+
+// });
+// describe('getGifList tests', () => {
+//     const middlewares = [thunk];
+//     const mockStore = configureMockStore(middlewares);
+//     const store = mockStore({});
 
 
-    afterEach(() => {
-        store.clearActions();
-        fetchMock.restore()
-    })
-    it('should dispatch getGifListStarted action', () => {
-        fetchMock.get('*', {});
-        const expected = actions.getGifListStarted();
-        return store.dispatch(actions.getGifList()).then(() => {
-            expect(store.getActions()).toContainEqual(expected);
-        });
-    });
-    it('should dispatch getGifListSuccess action if successful response', () => {
-        fetchMock.get('*', { body: gifRes });
-        const gifList = gifRes;
+//     afterEach(() => {
+//         store.clearActions();
+//         fetchMock.restore()
+//     })
+//     it('should dispatch getGifListStarted action', () => {
+//         fetchMock.get('*', {});
+//         const expected = actions.getGifListStarted();
+//         return store.dispatch(actions.getGifList()).then(() => {
+//             expect(store.getActions()).toContainEqual(expected);
+//         });
+//     });
+//     it('should dispatch getGifListSuccess action if successful response', () => {
+//         fetchMock.get('*', { body: gifRes });
+//         const gifList = gifRes;
+//         const expected = actions.getGifListSuccess(gifList)
+//         return store.dispatch(actions.getGifList()).then((res) => {
+//             expect(store.getActions()).toContainEqual(expected);
+//         });
 
-        const expected = actions.getGifListSuccess(gifList)
-        return store.dispatch(actions.getGifList()).then((res) => {
-            expect(store.getActions()).toContainEqual(expected);
-        });
+//     });
+//     it('should dispatch getGifListFailure action if unsuccessful response', () => {
+//         fetchMock.get('*', { status: 404 });
+//         const expected = actions.getGifListFailure(new TypeError('Cannot read property \'on\' of undefined'));
+//         return store.dispatch(actions.getGifList()).then((res) => {
+//             expect(store.getActions()).toContainEqual(expected);
+//         });
 
-    });
-    it('should dispatch getGifListFailure action if unsuccessful response', () => {
-        fetchMock.get('*', { status: 402 });
-        const gifList = gifRes;
+//     });
 
-        const expected = actions.getGifListFailure(new TypeError('Cannot read property \'on\' of undefined'));
-        return store.dispatch(actions.getGifList()).then((res) => {
-            expect(store.getActions()).toContainEqual(expected);
-        });
-
-    });
-
-});
+// });
 
 
 // spy on dispatch called with relevant action
