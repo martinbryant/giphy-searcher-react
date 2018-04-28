@@ -10,7 +10,7 @@ describe('Action creator tests ', () => {
         const searchTerm = 'new search'
         const expected = {
             type: 'SUBMIT_SEARCH',
-            searchTerm: 'new serch'
+            searchTerm: 'new search'
         }
         expect(actions.submitSearch(searchTerm)).toEqual(expected);
     });
@@ -29,11 +29,11 @@ describe('Action creator tests ', () => {
         }
         expect(actions.getNewGifsSuccess(gifList)).toEqual(expected);
     });
-    it('creates an action for Get New Gifs Success', () => {
-        const error = 'error message'
+    it('creates an action for Get New Gifs Failure', () => {
+        const error = Error('Network Error')
         const expected = {
             type: 'GET_NEW_GIFS_FAILURE',
-            error: 'error message'
+            error: Error('Network Error')
         }
         expect(actions.getNewGifsFailure(error)).toEqual(expected);
     });
@@ -53,10 +53,10 @@ describe('Action creator tests ', () => {
         expect(actions.getMoreGifsSuccess(gifList)).toEqual(expected);
     });
     it('creates an action for Get More Gifs Failure', () => {
-        const error = 'error message'
+        const error = Error('Network Error')
         const expected = {
             type: 'GET_MORE_GIFS_FAILURE',
-            error: 'error message'
+            error: Error('Network Error')
         }
         expect(actions.getMoreGifsFailure(error)).toEqual(expected);
     });
@@ -76,10 +76,10 @@ describe('Action creator tests ', () => {
         expect(actions.getTrendingGifsSuccess(gifList)).toEqual(expected);
     });
     it('creates an action for Get Trending Gifs Failure', () => {
-        const error = 'error message'
+        const error = Error('Network Error')
         const expected = {
             type: 'GET_TRENDING_GIFS_FAILURE',
-            error: 'error message'
+            error: Error('Network Error')
         }
         expect(actions.getTrendingGifsFailure(error)).toEqual(expected);
     });
