@@ -1,4 +1,3 @@
-import expect from 'expect';
 import fetchMock from 'fetch-mock';
 
 import * as mid from './middleware'
@@ -29,31 +28,27 @@ describe('API Middleware tests', () => {
         expect(dispatch.mock.calls.length).toEqual(0);
     })
     it('should call dispatch with getNewGifsSuccess action', () => {
-        const gifList = ["http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif",
-            "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif"]
         const action = {
             type: 'GET_NEW_GIFS_STARTED'
         };
         const expected = {
-            type: 'GET_NEW_GIFS_SUCCESS',
-            gifList
+            type: 'GET_NEW_GIFS_SUCCESS'
         }
         fetchMock.get('*', { body: gifRes });
         return middleware(action).then(() => {
-            expect(dispatch.mock.calls).toEqual([[expected]])
+            expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
         });
     })
     it('should call dispatch with getNewGifsFailure action', () => {
         const expected = {
-            type: 'GET_NEW_GIFS_FAILURE',
-            error: TypeError('Cannot read property \'on\' of undefined')
+            type: 'GET_NEW_GIFS_FAILURE'
         }
         const action = {
             type: 'GET_NEW_GIFS_STARTED'
         };
         fetchMock.get('*', { status: 404 })
         return middleware(action).then(() => {
-            expect(dispatch.mock.calls).toEqual([[expected]])
+            expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
         });
     })
 });

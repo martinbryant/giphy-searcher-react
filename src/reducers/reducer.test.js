@@ -1,4 +1,3 @@
-import expect from 'expect';
 
 import reducer from './reducer';
 
@@ -148,4 +147,13 @@ describe('Reducer tests', () => {
         }
         expect(reducer(oldState, action)).toEqual(expected);
     });
+    it('should handle Get New Gifs Started')
+    it('should handle Get More Gifs Started')
+    it('should handle Get Trending Gifs Started')
+    it('should handle Get New Gifs Success')
+    it('should handle Get More Gifs Success')
+    it('should handle Get Trending Gifs Success')
+    it('should handle Get New Gifs Failure')
+    it('should handle Get More Gifs Failure')
+    it('should handle Get Trending Gifs Failure')
 });
