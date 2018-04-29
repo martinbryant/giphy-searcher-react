@@ -21,7 +21,13 @@ describe('API Middleware tests', () => {
         middleware(action);
         expect(next.mock.calls).toEqual([[action]])
     });
-    it('should ignore non-api request actions')
+    it('should ignore non-api request actions', () => {
+        const action = {
+            type: 'NON-API-ACTION'
+        }
+        middleware(action);
+        expect(dispatch.mock.calls.length).toEqual(0);
+    })
     it('should call dispatch with getNewGifsSuccess action', () => {
         const gifList = ["http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif",
             "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif"]
@@ -33,6 +39,19 @@ describe('API Middleware tests', () => {
             gifList
         }
         fetchMock.get('*', { body: gifRes });
+        return middleware(action).then(() => {
+            expect(dispatch.mock.calls).toEqual([[expected]])
+        });
+    })
+    it('should call dispatch with getNewGifsFailure action', () => {
+        const expected = {
+            type: 'GET_TRENDING_GIFS_FAILURE',
+            error: TypeError('Cannot read property \'on\' of undefined')
+        }
+        const action = {
+            type: 'GET_NEW_GIFS_STARTED'
+        };
+        fetchMock.get('*', { status: 404 })
         return middleware(action).then(() => {
             expect(dispatch.mock.calls).toEqual([[expected]])
         });
