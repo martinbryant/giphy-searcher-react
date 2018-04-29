@@ -45,7 +45,7 @@ describe('API Middleware tests', () => {
     })
     it('should call dispatch with getNewGifsFailure action', () => {
         const expected = {
-            type: 'GET_TRENDING_GIFS_FAILURE',
+            type: 'GET_NEW_GIFS_FAILURE',
             error: TypeError('Cannot read property \'on\' of undefined')
         }
         const action = {

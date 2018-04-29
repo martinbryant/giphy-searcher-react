@@ -7,7 +7,9 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
             .then(res => {
                 dispatch(actions.getNewGifsSuccess(gifResponseToGifUrlList(res)))
             })
-            .catch((err) => err);
+            .catch(err => {
+                dispatch(actions.getNewGifsFailure(err))
+            });
     }
 }
 
