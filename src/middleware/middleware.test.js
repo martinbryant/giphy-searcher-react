@@ -21,9 +21,10 @@ describe('API Middleware tests', () => {
         middleware(action);
         expect(next.mock.calls).toEqual([[action]])
     });
+    it('should ignore non-api request actions')
     it('should call dispatch with getNewGifsSuccess action', () => {
-        const gifList = ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
-            'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif']
+        const gifList = ["http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif",
+            "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif"]
         const action = {
             type: 'GET_NEW_GIFS_STARTED'
         };
@@ -32,8 +33,9 @@ describe('API Middleware tests', () => {
             gifList
         }
         fetchMock.get('*', { body: gifRes });
-        middleware(action);
-        expect(dispatch.mock.calls).toEqual([[expected]])
+        return middleware(action).then(() => {
+            expect(dispatch.mock.calls).toEqual([[expected]])
+        });
     })
 });
 
