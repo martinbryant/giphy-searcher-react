@@ -22,6 +22,7 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
             .then(res => {
                 dispatch(actions.getMoreGifsSuccess(res))
             })
+            .catch(Promise.resolve())
     }
 }
 
