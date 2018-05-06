@@ -14,6 +14,9 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
                 dispatch(actions.getNewGifsFailure(err))
             });
     }
+    if (action.type === 'GET_MORE_GIFS_STARTED') {
+        return Promise.resolve();
+    }
 }
 
 const gifResponseToGifUrlList = gifResponse => {
