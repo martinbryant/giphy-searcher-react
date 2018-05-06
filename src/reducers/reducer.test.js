@@ -12,52 +12,8 @@ describe('Reducer tests', () => {
         }
         expect(reducer(undefined, {})).toEqual(expected);
     });
-    it('should handle Submit Search with a string', () => {
-        const state = {
-            searchTerm: 'old search',
-            searchError: 'Search cannot be blank',
-            gifsRequired: 5,
-            loadedGifList: [],
-            loadingError: {},
-            loadingStatus: false
-        }
-        const expected = {
-            searchTerm: 'a string',
-            searchError: '',
-            gifsRequired: 5,
-            loadedGifList: [],
-            loadingError: {},
-            loadingStatus: false
-        }
-        const action = {
-            type: 'SUBMIT_SEARCH',
-            searchTerm: 'a string'
-        }
-        expect(reducer(state, action)).toEqual(expected);
-    });
-    it('should handle Submit Search with a blank string', () => {
-        const state = {
-            searchTerm: 'old search',
-            searchError: '',
-            gifsRequired: 5,
-            loadedGifList: [],
-            loadingError: {},
-            loadingStatus: false
-        }
-        const expected = {
-            searchTerm: 'old search',
-            searchError: 'Search cannot be blank',
-            gifsRequired: 5,
-            loadedGifList: [],
-            loadingError: {},
-            loadingStatus: false
-        }
-        const action = {
-            type: 'SUBMIT_SEARCH',
-            searchTerm: ''
-        }
-        expect(reducer(state, action)).toEqual(expected);
-    });
+    it('handles search success')
+    it('handles search error')
     it('should handle Get New Gifs Started', () => {
         const state = {
             searchTerm: 'old search',

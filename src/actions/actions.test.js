@@ -14,6 +14,8 @@ describe('Action creator tests ', () => {
         }
         expect(actions.submitSearch(searchTerm)).toEqual(expected);
     });
+    it('creates an action for Search Success')
+    it('creates an action for Search Error')
     it('creates an action for Get New Gifs Started', () => {
         const expected = {
             type: 'GET_NEW_GIFS_STARTED'

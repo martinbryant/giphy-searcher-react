@@ -99,6 +99,10 @@ describe('API Middleware tests', () => {
             expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
         });
     })
+    it('call correct url for gif search')
+    it('gif search sets correct url offset')
+    it('call correct url for gif trending')
+    it('trending gifs responses')
 });
 describe('gifResponseToGifUrlList tests ', () => {
     it('turns a valid gifResponse to an array of gif Urls', () => {
