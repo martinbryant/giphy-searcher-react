@@ -35,7 +35,9 @@ const loadingError = (state = {}, action) => {
     switch (action.type) {
         case 'GET_GIF_LIST_FAILURE':
             return action.error
-        case 'GET_GIF_LIST_STARTED':
+        case 'GET_NEW_GIFS_STARTED':
+        case 'GET_MORE_GIFS_STARTED':
+        case 'GET_TRENDING_GIFS_STARTED':
             return {}
         default:
             return state;
@@ -44,7 +46,9 @@ const loadingError = (state = {}, action) => {
 
 const loadingStatus = (state = false, action) => {
     switch (action.type) {
-        case 'GET_GIF_LIST_STARTED':
+        case 'GET_NEW_GIFS_STARTED':
+        case 'GET_MORE_GIFS_STARTED':
+        case 'GET_TRENDING_GIFS_STARTED':
             return true;
         default:
             return state
