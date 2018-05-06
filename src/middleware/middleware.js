@@ -22,7 +22,18 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
             .then(res => {
                 dispatch(actions.getMoreGifsSuccess(res))
             })
-            .catch(Promise.resolve())
+            .catch(err => {
+                dispatch(actions.getMoreGifsFailure(err));
+            })
+    }
+    if (action.type === 'GET_TRENDING_GIFS_STARTED') {
+        return fetch('api/test').then(res => res.json())
+            .then(res => {
+                gifResponseToGifUrlList(res);
+            })
+            .then(res => {
+                dispatch(actions.getMoreGifsSuccess(res))
+            })
     }
 }
 

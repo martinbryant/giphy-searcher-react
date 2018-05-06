@@ -75,6 +75,18 @@ describe('API Middleware tests', () => {
             expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
         });
     })
+    it('should call dispatch with getTrendingGifsSuccess action', () => {
+        const action = {
+            type: 'GET_TRENDING_GIFS_STARTED'
+        }
+        const expected = {
+            type: 'GET_TRENDING_GIFS_SUCCESS'
+        }
+        fetchMock.get('*', { body: gifRes });
+        return middleware(action).then(() => {
+            expect(dispatch.mock.calls[0][0]).toMatchObject(expected);
+        });
+    });
 });
 describe('gifResponseToGifUrlList tests ', () => {
     it('turns a valid gifResponse to an array of gif Urls', () => {
