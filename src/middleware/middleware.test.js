@@ -60,7 +60,7 @@ describe('API Middleware tests', () => {
         }
         fetchMock.get('*', { body: gifRes });
         return middleware(action).then(() => {
-            expect(dispatch.mock.calls[0][0].toMatchObject(expected));
+            expect(dispatch.mock.calls[0][0]).toMatchObject(expected);
         });
 
     });

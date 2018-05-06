@@ -15,7 +15,13 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
             });
     }
     if (action.type === 'GET_MORE_GIFS_STARTED') {
-        return Promise.resolve();
+        return fetch('api/test').then(res => res.json())
+            .then(res => {
+                gifResponseToGifUrlList(res);
+            })
+            .then(res => {
+                dispatch(actions.getMoreGifsSuccess(res))
+            })
     }
 }
 
