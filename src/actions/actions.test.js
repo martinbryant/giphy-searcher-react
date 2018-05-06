@@ -85,21 +85,6 @@ describe('Action creator tests ', () => {
     });
 
 });
-
-// describe('gifResponseToGifUrlList tests ', () => {
-//     it('turns a valid gifResponse to an array of gif Urls', () => {
-//         const gifResponse = gifRes;
-//         const expected = ["http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif",
-//             "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif"]
-//         expect(actions.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
-//     });
-//     it('turns an invalid gifResponse to an Error', () => {
-//         const gifResponse = [];
-//         const expected = new TypeError("Cannot read property \'map\' of undefined");
-//         expect(actions.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
-//     });
-
-// });
 // describe('getGifList tests', () => {
 //     const middlewares = [thunk];
 //     const mockStore = configureMockStore(middlewares);

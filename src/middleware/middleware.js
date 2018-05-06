@@ -5,7 +5,10 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_NEW_GIFS_STARTED') {
         return fetch('api/test').then(res => res.json())
             .then(res => {
-                dispatch(actions.getNewGifsSuccess(gifResponseToGifUrlList(res)))
+                gifResponseToGifUrlList(res);
+            })
+            .then(res => {
+                dispatch(actions.getNewGifsSuccess(res))
             })
             .catch(err => {
                 dispatch(actions.getNewGifsFailure(err))
@@ -19,4 +22,8 @@ const gifResponseToGifUrlList = gifResponse => {
     } catch (err) {
         return err
     }
+}
+
+export {
+    gifResponseToGifUrlList
 }

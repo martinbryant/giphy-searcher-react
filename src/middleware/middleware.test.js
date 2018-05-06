@@ -13,7 +13,7 @@ describe('API Middleware tests', () => {
     afterEach(() => {
         fetchMock.restore()
     })
-    it('should call next', () => {
+    it('should call next with every action', () => {
         const action = {
             type: 'GET_NEW_GIFS_STARTED'
         };
@@ -40,17 +40,42 @@ describe('API Middleware tests', () => {
         });
     })
     it('should call dispatch with getNewGifsFailure action', () => {
-        const expected = {
-            type: 'GET_NEW_GIFS_FAILURE'
-        }
         const action = {
             type: 'GET_NEW_GIFS_STARTED'
         };
+        const expected = {
+            type: 'GET_NEW_GIFS_FAILURE'
+        }
         fetchMock.get('*', { status: 404 })
         return middleware(action).then(() => {
             expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
         });
     })
+    it('should call dispatch with getMoreGifsSuccess action', () => {
+        const action = {
+            type: 'GET_MORE_GIFS_STARTED'
+        }
+        const expected = {
+            type: 'GET_MORE_GIFS_SUCCESS'
+        }
+        fetchMock.get('*', { body: gifRes });
+        return middleware(action).then(() => {
+            expect(dispatch.mock.calls[0][0].toMatchObject(expected));
+        })
+    });
+});
+describe('gifResponseToGifUrlList tests ', () => {
+    it('turns a valid gifResponse to an array of gif Urls', () => {
+        const gifResponse = gifRes;
+        const expected = ["http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif",
+            "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif"]
+        expect(mid.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
+    });
+    it('turns an invalid gifResponse to an Error', () => {
+        const gifResponse = [];
+        const expected = new TypeError("Cannot read property \'map\' of undefined");
+        expect(mid.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
+    });
 });
 
 let gifRes = {

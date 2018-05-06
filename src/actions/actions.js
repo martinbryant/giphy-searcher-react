@@ -66,14 +66,6 @@ export const getGifListFailure = error => ({
     error
 });
 
-export const gifResponseToGifUrlList = gifResponse => {
-    try {
-        return gifResponse.data.map(n => n.images.fixed_width_downsampled.url)
-    } catch (err) {
-        return err
-    }
-}
-
 export const apiRequestGifList = () => fetch('api/test').then(res => res.json());
 
 export const getGifList = () => {
