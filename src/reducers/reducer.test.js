@@ -51,51 +51,8 @@ describe('Reducer tests', () => {
         }
         expect(reducer(oldState, action)).toEqual(expected);
     });
-    it('should handle Get Gif List Success and add recieved list to an empty list', () => {
-        const expected = {
-            searchTerm: 'old search',
-            searchError: '',
-            gifsRequired: 5,
-            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
-                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
-            loadingError: {},
-            loadingStatus: false
-        }
-        const action = {
-            type: 'GET_GIF_LIST_SUCCESS',
-            gifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
-                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif']
-        }
-        expect(reducer(oldState, action)).toEqual(expected);
-    });
-    it('should handle Get Gif List Success and add recieved list to the end of existing list', () => {
-        const state = {
-            searchTerm: 'old search',
-            searchError: '',
-            gifsRequired: 5,
-            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
-                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
-            loadingError: {},
-            loadingStatus: false
-        }
-        const expected = {
-            searchTerm: 'old search',
-            searchError: '',
-            gifsRequired: 5,
-            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
-                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
-                'https://media1.giphy.com/media/3ohs7GPbaDx10LHIVG/200_d.gif',
-                'https://media1.giphy.com/media/3ohs7GPbaDx10LHIVG/200_d.gif'],
-            loadingError: {},
-            loadingStatus: false
-        }
-        const action = {
-            type: 'GET_GIF_LIST_SUCCESS',
-            gifList: ['https://media1.giphy.com/media/3ohs7GPbaDx10LHIVG/200_d.gif',
-                'https://media1.giphy.com/media/3ohs7GPbaDx10LHIVG/200_d.gif']
-        }
-        expect(reducer(state, action)).toEqual(expected);
-    });
+
+
     it('should handle Get Gif List Failure', () => {
         const expected = {
             searchTerm: 'old search',
@@ -116,7 +73,8 @@ describe('Reducer tests', () => {
             searchTerm: 'old search',
             searchError: '',
             gifsRequired: 5,
-            loadedGifList: [],
+            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
             loadingError: Error('The returned network error'),
             loadingStatus: false
         }
@@ -138,7 +96,8 @@ describe('Reducer tests', () => {
             searchTerm: 'old search',
             searchError: '',
             gifsRequired: 5,
-            loadedGifList: [],
+            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
             loadingError: Error('The returned network error'),
             loadingStatus: false
         }
@@ -146,7 +105,8 @@ describe('Reducer tests', () => {
             searchTerm: 'old search',
             searchError: '',
             gifsRequired: 5,
-            loadedGifList: [],
+            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
             loadingError: {},
             loadingStatus: true
         }

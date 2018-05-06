@@ -22,10 +22,14 @@ const gifsRequired = (state = 5, action) => state
 
 const loadedGifList = (state = [], action) => {
     switch (action.type) {
-        case 'GET_GIF_LIST_SUCCESS':
+        case 'GET_NEW_GIFS_SUCCESS':
+        case 'GET_MORE_GIFS_SUCCESS':
+        case 'GET_TRENDING_GIFS_SUCCESS':
             return [state,
                 action.gifList
             ].reduce((a, b) => a.concat(b))
+        case 'GET_NEW_GIFS_STARTED':
+            return []
         default:
             return state;
     }
