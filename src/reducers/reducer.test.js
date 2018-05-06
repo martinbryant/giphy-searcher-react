@@ -199,7 +199,49 @@ describe('Reducer tests', () => {
         }
         expect(reducer(oldState, action)).toEqual(expected);
     })
-    it('should handle Get New Gifs Failure')
-    it('should handle Get More Gifs Failure')
-    it('should handle Get Trending Gifs Failure')
+    it('should handle Get New Gifs Failure', () => {
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: Error('The returned network error'),
+            loadingStatus: false
+        }
+        const action = {
+            type: 'GET_NEW_GIFS_FAILURE',
+            error: Error('The returned network error')
+        }
+        expect(reducer(oldState, action)).toEqual(expected);
+    })
+    it('should handle Get More Gifs Failure', () => {
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: Error('The returned network error'),
+            loadingStatus: false
+        }
+        const action = {
+            type: 'GET_MORE_GIFS_FAILURE',
+            error: Error('The returned network error')
+        }
+        expect(reducer(oldState, action)).toEqual(expected);
+    })
+    it('should handle Get Trending Gifs Failure', () => {
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: Error('The returned network error'),
+            loadingStatus: false
+        }
+        const action = {
+            type: 'GET_TRENDING_GIFS_FAILURE',
+            error: Error('The returned network error')
+        }
+        expect(reducer(oldState, action)).toEqual(expected);
+    })
 });
