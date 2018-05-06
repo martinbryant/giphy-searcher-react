@@ -32,7 +32,7 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
                 gifResponseToGifUrlList(res);
             })
             .then(res => {
-                dispatch(actions.getMoreGifsSuccess(res))
+                dispatch(actions.getTrendingGifsSuccess(res))
             })
     }
 }
