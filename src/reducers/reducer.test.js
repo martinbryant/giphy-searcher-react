@@ -147,9 +147,72 @@ describe('Reducer tests', () => {
         }
         expect(reducer(oldState, action)).toEqual(expected);
     });
-    it('should handle Get New Gifs Started')
-    it('should handle Get More Gifs Started')
-    it('should handle Get Trending Gifs Started')
+    it('should handle Get New Gifs Started', () => {
+        const state = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: Error('The returned network error'),
+            loadingStatus: false
+        }
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: {},
+            loadingStatus: true
+        }
+        const action = {
+            type: 'GET_NEW_GIFS_STARTED'
+        }
+        expect(reducer(state, action)).toEqual(expected);
+    })
+    it('should handle Get More Gifs Started', () => {
+        const state = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: Error('The returned network error'),
+            loadingStatus: false
+        }
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: {},
+            loadingStatus: true
+        }
+        const action = {
+            type: 'GET_MORE_GIFS_STARTED'
+        }
+        expect(reducer(state, action)).toEqual(expected);
+    })
+    it('should handle Get Trending Gifs Started', () => {
+        const state = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: Error('The returned network error'),
+            loadingStatus: false
+        }
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: {},
+            loadingStatus: true
+        }
+        const action = {
+            type: 'GET_TRENDING_GIFS_STARTED'
+        }
+        expect(reducer(state, action)).toEqual(expected);
+    })
     it('should handle Get New Gifs Success')
     it('should handle Get More Gifs Success')
     it('should handle Get Trending Gifs Success')
