@@ -34,6 +34,9 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
             .then(res => {
                 dispatch(actions.getTrendingGifsSuccess(res))
             })
+            .catch(err => {
+                dispatch(actions.getMoreGifsFailure(err));
+            })
     }
 }
 
