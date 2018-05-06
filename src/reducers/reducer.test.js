@@ -177,9 +177,68 @@ describe('Reducer tests', () => {
         }
         expect(reducer(state, action)).toEqual(expected);
     })
-    it('should handle Get New Gifs Success')
-    it('should handle Get More Gifs Success')
-    it('should handle Get Trending Gifs Success')
+    it('should handle Get New Gifs Success', () => {
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
+            loadingError: {},
+            loadingStatus: false
+        }
+        const action = {
+            type: 'GET_NEW_GIFS_SUCCESS',
+            gifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif']
+        }
+        expect(reducer(oldState, action)).toEqual(expected);
+    })
+    it('should handle Get More Gifs Success', () => {
+        const state = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
+            loadingError: {},
+            loadingStatus: false
+        }
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media1.giphy.com/media/3ohs7GPbaDx10LHIVG/200_d.gif',
+                'https://media1.giphy.com/media/3ohs7GPbaDx10LHIVG/200_d.gif'],
+            loadingError: {},
+            loadingStatus: false
+        }
+        const action = {
+            type: 'GET_MORE_GIFS_SUCCESS',
+            gifList: ['https://media1.giphy.com/media/3ohs7GPbaDx10LHIVG/200_d.gif',
+                'https://media1.giphy.com/media/3ohs7GPbaDx10LHIVG/200_d.gif']
+        }
+        expect(reducer(state, action)).toEqual(expected);
+    })
+    it('should handle Get Trending Gifs Success', () => {
+        const expected = {
+            searchTerm: 'old search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
+            loadingError: {},
+            loadingStatus: false
+        }
+        const action = {
+            type: 'GET_TRENDING_GIFS_SUCCESS',
+            gifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif']
+        }
+        expect(reducer(oldState, action)).toEqual(expected);
+    })
     it('should handle Get New Gifs Failure')
     it('should handle Get More Gifs Failure')
     it('should handle Get Trending Gifs Failure')
