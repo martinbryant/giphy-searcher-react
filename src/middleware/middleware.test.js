@@ -103,6 +103,28 @@ describe('API Middleware tests', () => {
     it('gif search sets correct url offset')
     it('call correct url for gif trending')
     it('trending gifs responses')
+    it('should dispatch action for a validated search term', () => {
+        const action = {
+            type: 'SUBMIT_SEARCH',
+            searchTerm: 'good search'
+        }
+        const expected = {
+            type: 'SUBMIT_SEARCH_SUCCESS'
+        }
+        middleware(action);
+        expect(dispatch.mock.calls[0][0]).toMatchObject(expected);
+    })
+    it('should dispatch action for a search term error', () => {
+        const action = {
+            type: 'SUBMIT_SEARCH',
+            searchTerm: ''
+        }
+        const expected = {
+            type: 'SUBMIT_SEARCH_ERROR'
+        }
+        middleware(action);
+        expect(dispatch.mock.calls[0][0]).toMatchObject(expected);
+    })
 });
 describe('gifResponseToGifUrlList tests ', () => {
     it('turns a valid gifResponse to an array of gif Urls', () => {
