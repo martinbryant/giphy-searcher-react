@@ -8,7 +8,7 @@ describe('API Middleware tests', () => {
         next = jest.fn();
         dispatch = jest.fn();
         getState = jest.fn();
-        middleware = mid.apiMiddleware({ dispatch, getState })(next);
+        middleware = mid.searchMiddleware({ dispatch, getState })(next);
     })
     afterEach(() => {
         fetchMock.restore()
@@ -121,6 +121,17 @@ describe('API Middleware tests', () => {
         }
         const expected = {
             type: 'SUBMIT_SEARCH_ERROR'
+        }
+        middleware(action);
+        expect(dispatch.mock.calls[0][0]).toMatchObject(expected);
+    })
+    it('should dispatch action for getNewGifsStarted on submitSearchSuccess action', () => {
+        const action = {
+            type: 'SUBMIT_SEARCH_SUCCESS',
+            searchTerm: 'good search'
+        }
+        const expected = {
+            type: 'GET_NEW_GIFS_STARTED'
         }
         middleware(action);
         expect(dispatch.mock.calls[0][0]).toMatchObject(expected);
