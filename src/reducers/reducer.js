@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 
 const searchTerm = (state = "", action) => {
     switch (action.type) {
-        case 'SUBMIT_SEARCH':
-            return action.searchTerm === '' ? state : action.searchTerm
+        case 'SUBMIT_SEARCH_SUCCESS':
+            return action.searchTerm
         default:
             return state
     }
@@ -11,8 +11,10 @@ const searchTerm = (state = "", action) => {
 
 const searchError = (state = "", action) => {
     switch (action.type) {
-        case 'SUBMIT_SEARCH':
-            return action.searchTerm === '' ? 'Search cannot be blank' : ''
+        case 'SUBMIT_SEARCH_FAILURE':
+            return action.searchError
+        case 'SUBMIT_SEARCH_SUCCESS':
+            return ''
         default:
             return state;
     }

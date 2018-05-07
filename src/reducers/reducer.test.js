@@ -15,7 +15,7 @@ describe('Reducer tests', () => {
     it('handles search success', () => {
         const state = {
             searchTerm: '',
-            searchError: '',
+            searchError: 'old error',
             gifsRequired: 5,
             loadedGifList: [],
             loadingError: {},
