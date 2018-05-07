@@ -15,7 +15,7 @@ describe('Action creator tests ', () => {
     });
     it('creates an action for Search Success', () => {
         const expected = {
-            type: 'SUBMIT_SEARCH_SUCESS',
+            type: 'SUBMIT_SEARCH_SUCCESS',
             searchTerm: 'good search'
         }
         expect(actions.submitSearchSuccess('good search')).toEqual(expected);
