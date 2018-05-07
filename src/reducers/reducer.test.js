@@ -12,8 +12,52 @@ describe('Reducer tests', () => {
         }
         expect(reducer(undefined, {})).toEqual(expected);
     });
-    it('handles search success')
-    it('handles search error')
+    it('handles search success', () => {
+        const state = {
+            searchTerm: '',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: {},
+            loadingStatus: false
+        }
+        const expected = {
+            searchTerm: 'good search',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: {},
+            loadingStatus: false
+        }
+        const action = {
+            type: 'SUBMIT_SEARCH_SUCCESS',
+            searchTerm: 'good search'
+        }
+        expect(reducer(state, action)).toEqual(expected);
+    })
+    it('handles search error', () => {
+        const state = {
+            searchTerm: '',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: {},
+            loadingStatus: false
+        }
+        const expected = {
+            searchTerm: '',
+            searchError: 'Search cannot be blank',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: {},
+            loadingStatus: false
+        }
+        const action = {
+            type: 'SUBMIT_SEARCH_FAILURE',
+            searchError: 'Search cannot be blank'
+        }
+        expect(reducer(state, action)).toEqual(expected);
+    })
     it('should handle Get New Gifs Started', () => {
         const state = {
             searchTerm: 'old search',
