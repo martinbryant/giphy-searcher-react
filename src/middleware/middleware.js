@@ -1,6 +1,6 @@
 import * as actions from '../actions/actions';
 
-export const apiMiddleware = ({ dispatch, getState }) => next => action => {
+export const searchMiddleware = ({ dispatch, getState }) => next => action => {
     if (action.type === 'SUBMIT_SEARCH') {
         let searchError = validateSearchTerm(action.searchTerm)
         searchError
@@ -8,6 +8,9 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
             : dispatch(actions.submitSearchSuccess(action.searchTerm))
     }
     next(action)
+    if (action.type === 'SUBMIT_SEARCH_SUCCESS') {
+        dispatch(actions.getNewGifsStarted(action.searchTerm));
+    }
     if (action.type === 'GET_NEW_GIFS_STARTED') {
         return fetch('api/test').then(res => res.json())
             .then(res => {
@@ -57,5 +60,6 @@ const gifResponseToGifUrlList = gifResponse => {
 const validateSearchTerm = searchTerm => searchTerm === '' ? 'Search term cannot be blank!' : ''
 
 export {
-    gifResponseToGifUrlList
+    gifResponseToGifUrlList,
+    validateSearchTerm
 }
