@@ -3,6 +3,14 @@ export const submitSearch = searchTerm => ({
     searchTerm
 });
 
+export const submitSearchSuccess = searchTerm => ({
+
+});
+
+export const submitSearchError = searchError => ({
+
+})
+
 export const loadMoreGifs = () => ({
     type: 'LOAD_MORE_GIFS'
 });

@@ -7,15 +7,26 @@ import * as actions from './actions';
 
 describe('Action creator tests ', () => {
     it('creates an action for Submit Search', () => {
-        const searchTerm = 'new search'
         const expected = {
             type: 'SUBMIT_SEARCH',
             searchTerm: 'new search'
         }
-        expect(actions.submitSearch(searchTerm)).toEqual(expected);
+        expect(actions.submitSearch('new search')).toEqual(expected);
     });
-    it('creates an action for Search Success')
-    it('creates an action for Search Error')
+    it('creates an action for Search Success', () => {
+        const expected = {
+            type: 'SUBMIT_SEARCH_SUCESS',
+            searchTerm: 'good search'
+        }
+        expect(actions.submitSearchSuccess('good search')).toEqual(expected);
+    })
+    it('creates an action for Search Error', () => {
+        const expected = {
+            type: 'SUBMIT_SEARCH_ERROR',
+            searchError: 'Search cannot be blank'
+        }
+        expect(actions.submitSearchError('Search cannot be blank')).toEqual(expected)
+    })
     it('creates an action for Get New Gifs Started', () => {
         const expected = {
             type: 'GET_NEW_GIFS_STARTED'
@@ -87,116 +98,3 @@ describe('Action creator tests ', () => {
     });
 
 });
-// describe('getGifList tests', () => {
-//     const middlewares = [thunk];
-//     const mockStore = configureMockStore(middlewares);
-//     const store = mockStore({});
-
-
-//     afterEach(() => {
-//         store.clearActions();
-//         fetchMock.restore()
-//     })
-//     it('should dispatch getGifListStarted action', () => {
-//         fetchMock.get('*', {});
-//         const expected = actions.getGifListStarted();
-//         return store.dispatch(actions.getGifList()).then(() => {
-//             expect(store.getActions()).toContainEqual(expected);
-//         });
-//     });
-//     it('should dispatch getGifListSuccess action if successful response', () => {
-//         fetchMock.get('*', { body: gifRes });
-//         const gifList = gifRes;
-//         const expected = actions.getGifListSuccess(gifList)
-//         return store.dispatch(actions.getGifList()).then((res) => {
-//             expect(store.getActions()).toContainEqual(expected);
-//         });
-
-//     });
-//     it('should dispatch getGifListFailure action if unsuccessful response', () => {
-//         fetchMock.get('*', { status: 404 });
-//         const expected = actions.getGifListFailure(new TypeError('Cannot read property \'on\' of undefined'));
-//         return store.dispatch(actions.getGifList()).then((res) => {
-//             expect(store.getActions()).toContainEqual(expected);
-//         });
-
-//     });
-
-// });
-
-
-// spy on dispatch called with relevant action
-
-let gifRes = {
-    "data": [
-        {
-            type: "gif",
-            id: "FiGiRei2ICzzG",
-            slug: "funny-cat-FiGiRei2ICzzG",
-            url: "http://giphy.com/gifs/funny-cat-FiGiRei2ICzzG",
-            bitly_gif_url: "http://gph.is/1fIdLOl",
-            bitly_url: "http://gph.is/1fIdLOl",
-            embed_url: "http://giphy.com/embed/FiGiRei2ICzzG",
-            username: "",
-            source: "http://tumblr.com",
-            rating: "g",
-            caption: "",
-            content_url: "",
-            source_tld: "tumblr.com",
-            source_post_url: "http://tumblr.com",
-            import_datetime: "2014-01-18 09:14:20",
-            trending_datetime: "1970-01-01 00:00:00",
-            images: {
-                fixed_width_downsampled: {
-                    url: "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif",
-                    width: "200",
-                    height: "70",
-                    size: "71069",
-                    webp: "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.webp",
-                    webp_size: "13186"
-                }
-
-            },
-            title: "Funny Cat GIF",
-        },
-        {
-            type: "gif",
-            id: "FiGiRei2ICzzG",
-            slug: "funny-cat-FiGiRei2ICzzG",
-            url: "http://giphy.com/gifs/funny-cat-FiGiRei2ICzzG",
-            bitly_gif_url: "http://gph.is/1fIdLOl",
-            bitly_url: "http://gph.is/1fIdLOl",
-            embed_url: "http://giphy.com/embed/FiGiRei2ICzzG",
-            username: "",
-            source: "http://tumblr.com",
-            rating: "g",
-            caption: "",
-            content_url: "",
-            source_tld: "tumblr.com",
-            source_post_url: "http://tumblr.com",
-            import_datetime: "2014-01-18 09:14:20",
-            trending_datetime: "1970-01-01 00:00:00",
-            images: {
-                fixed_width_downsampled: {
-                    url: "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif",
-                    width: "200",
-                    height: "70",
-                    size: "71069",
-                    webp: "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.webp",
-                    webp_size: "13186"
-                }
-
-            },
-            title: "Funny Cat GIF",
-        }
-    ],
-    "meta": {
-        "status": 200,
-        "msg": "OK"
-    },
-    "pagination": {
-        "total_count": 1947,
-        "count": 25,
-        "offset": 0
-    }
-}
