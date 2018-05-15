@@ -60,13 +60,24 @@ const gifResponseToGifUrlList = gifResponse => {
 
 const validateSearchTerm = searchTerm => searchTerm === '' ? 'Search term cannot be blank!' : ''
 
-const calculateGifUrl = (searchTerm, limit, offset) => {
-    return 'http://api.giphy.com/v1/gifs/search?q='
-        + searchTerm + '&limit='
-        + limit + '&offset='
-        + offset
-        + '&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j'
+const calculateGifUrl = (limit, searchTerm, offset) => {
+    const searchUrl = 'http://api.giphy.com/v1/gifs/search?q=';
+    const trendingUrl = 'http://api.giphy.com/v1/gifs/trending?limit=';
+    const apiKey = '&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
+    if (!searchTerm && !offset) {
+        return trendingUrl + limit + apiKey
+    } else {
+        return searchUrl
+            + searchTerm
+            + '&limit='
+            + limit
+            + '&offset='
+            + offset
+            + apiKey
+    }
 }
+
+
 
 export {
     gifResponseToGifUrlList,

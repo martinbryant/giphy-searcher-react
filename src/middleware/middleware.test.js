@@ -99,12 +99,12 @@ describe('Search Middleware tests', () => {
             expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
         });
     })
-    it('call correct url for gif search', () => {
-        const searchUrl = 'http://api.giphy.com/v1/gifs/search?q=cat&limit=5&offset=5&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
-        expect(mid.calculateGifUrl('cat', 5, 5)).toEqual(searchUrl);
+    it('should calculate correct url for gif search', () => {
+        const searchUrl = 'http://api.giphy.com/v1/gifs/search?q=cat&limit=5&offset=10&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
+        expect(mid.calculateGifUrl(5, 'cat', 10)).toEqual(searchUrl);
     })
-    it('gif search sets correct url offset')
-    it('call correct url for gif trending', () => {
+
+    it('should calculate correct url for gif trending', () => {
         const trendingUrl = 'http://api.giphy.com/v1/gifs/trending?limit=10&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
         expect(mid.calculateGifUrl(10)).toEqual(trendingUrl);
     })
