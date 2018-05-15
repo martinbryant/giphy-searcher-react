@@ -104,7 +104,10 @@ describe('Search Middleware tests', () => {
         expect(mid.calculateGifUrl('cat', 5, 5)).toEqual(searchUrl);
     })
     it('gif search sets correct url offset')
-    it('call correct url for gif trending')
+    it('call correct url for gif trending', () => {
+        const trendingUrl = 'http://api.giphy.com/v1/gifs/trending?limit=10&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
+        expect(mid.calculateGifUrl(10)).toEqual(trendingUrl);
+    })
     it('should dispatch action for a validated search term', () => {
         const action = {
             type: 'SUBMIT_SEARCH',
