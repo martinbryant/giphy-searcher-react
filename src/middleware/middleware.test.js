@@ -1,13 +1,21 @@
 import fetchMock from 'fetch-mock';
 
 import * as mid from './middleware'
+import * as actions from '../actions/actions'
 
 describe('Search Middleware tests', () => {
     let next, dispatch, getState, middleware;
     beforeEach(() => {
         next = jest.fn();
         dispatch = jest.fn();
-        getState = jest.fn();
+        getState = () => ({
+            searchTerm: '',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: {},
+            loadingStatus: false
+        });
         middleware = mid.searchMiddleware({ dispatch, getState })(next);
     })
     afterEach(() => {
@@ -162,17 +170,18 @@ describe('getFromApi tests', () => {
         fetchMock.restore()
     })
     it('should return a call to fetch', () => {
-        const trendingUrl = 'http://api.giphy.com/v1/gifs/trending?limit=10&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
+        const trendingUrl = 'http://api.giphy.com/v1/gifs/trending?limit=5&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
         const getState = {
-            searchTerm: 'cat',
+            searchTerm: '',
             gifsRequired: 5,
-            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
-                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif']
+            loadedGifList: []
         };
+        const successAction = actions.getTrendingGifsSuccess
+        const failureAction = actions.getTrendingGifsFailure;
         const dispatch = jest.fn();
         fetchMock.get(trendingUrl, { body: gifRes });
-        return mid.getFromApi(getState).then(() => {
-            expect(dispatch.mock.calls[0][0]).toEqual('something');
+        return mid.getFromApi(dispatch, getState)(successAction, failureAction).then(() => {
+            expect(fetchMock.done()).toEqual(true);
         })
     })
 })
