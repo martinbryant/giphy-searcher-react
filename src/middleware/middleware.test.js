@@ -99,15 +99,6 @@ describe('Search Middleware tests', () => {
             expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
         });
     })
-    it('should calculate correct url for gif search', () => {
-        const searchUrl = 'http://api.giphy.com/v1/gifs/search?q=cat&limit=5&offset=10&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
-        expect(mid.calculateGifUrl(5, 'cat', 10)).toEqual(searchUrl);
-    })
-
-    it('should calculate correct url for gif trending', () => {
-        const trendingUrl = 'http://api.giphy.com/v1/gifs/trending?limit=10&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
-        expect(mid.calculateGifUrl(10)).toEqual(trendingUrl);
-    })
     it('should dispatch action for a validated search term', () => {
         const action = {
             type: 'SUBMIT_SEARCH',
@@ -155,6 +146,36 @@ describe('gifResponseToGifUrlList tests ', () => {
         expect(mid.gifResponseToGifUrlList(gifResponse)).toEqual(expected);
     });
 });
+describe('calculateGifUrl tests', () => {
+    it('should calculate correct url for gif search', () => {
+        const searchUrl = 'http://api.giphy.com/v1/gifs/search?q=cat&limit=5&offset=10&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
+        expect(mid.calculateGifUrl(5, 'cat', 10)).toEqual(searchUrl);
+    })
+
+    it('should calculate correct url for gif trending', () => {
+        const trendingUrl = 'http://api.giphy.com/v1/gifs/trending?limit=10&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
+        expect(mid.calculateGifUrl(10)).toEqual(trendingUrl);
+    })
+});
+describe('getFromApi tests', () => {
+    afterEach(() => {
+        fetchMock.restore()
+    })
+    it('should return a call to fetch', () => {
+        const trendingUrl = 'http://api.giphy.com/v1/gifs/trending?limit=10&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
+        const getState = {
+            searchTerm: 'cat',
+            gifsRequired: 5,
+            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif']
+        };
+        const dispatch = jest.fn();
+        fetchMock.get(trendingUrl, { body: gifRes });
+        return mid.getFromApi(getState).then(() => {
+            expect(dispatch.mock.calls[0][0]).toEqual('something');
+        })
+    })
+})
 
 let gifRes = {
     "data": [

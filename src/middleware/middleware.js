@@ -77,10 +77,14 @@ const calculateGifUrl = (limit, searchTerm, offset) => {
     }
 }
 
+const getFromApi = (state, successAction, failureAction) => {
 
+    return fetch(calculateGifUrl(10)).then(res => res).catch(err => err)
+}
 
 export {
     gifResponseToGifUrlList,
     validateSearchTerm,
-    calculateGifUrl
+    calculateGifUrl,
+    getFromApi
 }
