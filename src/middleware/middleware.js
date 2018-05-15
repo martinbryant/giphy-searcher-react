@@ -60,7 +60,13 @@ const gifResponseToGifUrlList = gifResponse => {
 
 const validateSearchTerm = searchTerm => searchTerm === '' ? 'Search term cannot be blank!' : ''
 
-const calculateGifUrl = (searchTerm, limit, offset) => ''
+const calculateGifUrl = (searchTerm, limit, offset) => {
+    return 'http://api.giphy.com/v1/gifs/search?q='
+        + searchTerm + '&limit='
+        + limit + '&offset='
+        + offset
+        + '&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j'
+}
 
 export {
     gifResponseToGifUrlList,
