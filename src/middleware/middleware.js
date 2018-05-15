@@ -7,10 +7,11 @@ export const searchMiddleware = ({ dispatch, getState }) => next => action => {
             ? dispatch(actions.submitSearchError(searchError))
             : dispatch(actions.submitSearchSuccess(action.searchTerm))
     }
-    next(action)
-    if (action.type === 'SUBMIT_SEARCH_SUCCESS') {
+    next(action);
+
+    (action.type === 'SUBMIT_SEARCH_SUCCESS') &&
         dispatch(actions.getNewGifsStarted(action.searchTerm));
-    }
+
     if (action.type === 'GET_NEW_GIFS_STARTED') {
         return fetch('api/test').then(res => res.json())
             .then(res => {
@@ -59,7 +60,10 @@ const gifResponseToGifUrlList = gifResponse => {
 
 const validateSearchTerm = searchTerm => searchTerm === '' ? 'Search term cannot be blank!' : ''
 
+const calculateGifUrl = (searchTerm, limit, offset) => ''
+
 export {
     gifResponseToGifUrlList,
-    validateSearchTerm
+    validateSearchTerm,
+    calculateGifUrl
 }

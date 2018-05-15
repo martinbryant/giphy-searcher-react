@@ -2,7 +2,7 @@ import fetchMock from 'fetch-mock';
 
 import * as mid from './middleware'
 
-describe('API Middleware tests', () => {
+describe('Search Middleware tests', () => {
     let next, dispatch, getState, middleware;
     beforeEach(() => {
         next = jest.fn();
@@ -99,10 +99,12 @@ describe('API Middleware tests', () => {
             expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
         });
     })
-    it('call correct url for gif search')
+    it('call correct url for gif search', () => {
+        const searchUrl = 'http://api.giphy.com/v1/gifs/search?q=cat&limit=5&offset=5&api_key=FnWOsAt1MrjCleoqgtcZS57GN8HjKn0j';
+        expect(mid.calculateGifUrl('cat', 5, 5)).toEqual(searchUrl);
+    })
     it('gif search sets correct url offset')
     it('call correct url for gif trending')
-    it('trending gifs responses')
     it('should dispatch action for a validated search term', () => {
         const action = {
             type: 'SUBMIT_SEARCH',
