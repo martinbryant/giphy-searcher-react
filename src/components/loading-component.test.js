@@ -51,8 +51,18 @@ describe('Loading Component tests', () => {
         const expected = component.find('.load-more-button');
         expect(expected.exists()).toBe(false);
     })
-    it('renders a spinner if loading')
-    it('does not render a spinner if not loading')
+    it('renders a spinner if loading', () => {
+        const component = setup({
+            loadedGifList: [],
+            loading: true,
+            loadingError: false
+        });
+        const expected = component.find('.spinner fas fa-spinner fa-spin fa-4x');
+        expect(expected.exists()).toBe(true);
+    })
+    it('does not render a spinner if not loading', () => {
+
+    })
     it('renders an error if there is a loading error')
     it('does not render an error if there is no error')
 
