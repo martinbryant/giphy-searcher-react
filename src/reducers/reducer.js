@@ -36,16 +36,16 @@ const loadedGifList = (state = [], action) => {
     }
 }
 
-const loadingError = (state = {}, action) => {
+const loadingError = (state = '', action) => {
     switch (action.type) {
         case 'GET_NEW_GIFS_FAILURE':
         case 'GET_MORE_GIFS_FAILURE':
         case 'GET_TRENDING_GIFS_FAILURE':
-            return action.error
+            return action.error.message
         case 'GET_NEW_GIFS_STARTED':
         case 'GET_MORE_GIFS_STARTED':
         case 'GET_TRENDING_GIFS_STARTED':
-            return {}
+            return ''
         default:
             return state;
     }
