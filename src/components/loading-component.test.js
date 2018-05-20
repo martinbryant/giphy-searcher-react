@@ -62,7 +62,13 @@ describe('Loading Component tests', () => {
         expect(expected.hasClass('spinner fas fa-spinner fa-spin fa-4x')).toBe(true)
     })
     it('does not render a spinner if not loading', () => {
-
+        const component = setup({
+            loadedGifList: [],
+            loading: false,
+            loadingError: false
+        });
+        const expected = component.find('.spinner');
+        expect(expected.exists()).toBe(false);
     })
     it('renders an error if there is a loading error')
     it('does not render an error if there is no error')
