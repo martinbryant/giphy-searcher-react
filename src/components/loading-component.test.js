@@ -37,7 +37,7 @@ describe('Loading Component tests', () => {
             loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
                 'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
             loading: false,
-            loadingError: true
+            loadingError: Error('The returned network error')
         });
         const expected = component.find('.load-more-button');
         expect(expected.exists()).toBe(false);
@@ -70,7 +70,15 @@ describe('Loading Component tests', () => {
         const expected = component.find('.spinner');
         expect(expected.exists()).toBe(false);
     })
-    it('renders an error if there is a loading error')
+    it('renders an error if there is a loading error', () => {
+        const component = setup({
+            loadedGifList: [],
+            loading: false,
+            loadingError: Error('The returned network error')
+        });
+        const expected = component.find('.error-message');
+        expect(expected.exists()).toBe(true);
+    })
     it('does not render an error if there is no error')
 
 })
