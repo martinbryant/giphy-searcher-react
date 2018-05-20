@@ -57,8 +57,9 @@ describe('Loading Component tests', () => {
             loading: true,
             loadingError: false
         });
-        const expected = component.find('.spinner fas fa-spinner fa-spin fa-4x');
+        const expected = component.find('.spinner');
         expect(expected.exists()).toBe(true);
+        expect(expected.hasClass('spinner fas fa-spinner fa-spin fa-4x')).toBe(true)
     })
     it('does not render a spinner if not loading', () => {
 
