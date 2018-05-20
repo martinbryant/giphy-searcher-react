@@ -5,6 +5,7 @@ const LoadingComponent = ({ loading, loadingError, loadedGifList }) => {
         <div className="loading-section">
             {(loadedGifList.length > 0 && !loading && !loadingError) && <div className="load-more-button"></div>}
             {loading && <div className="spinner fas fa-spinner fa-spin fa-4x"></div>}
+            {<div className="error-message"></div>}
         </div>
     )
 }
