@@ -54,16 +54,12 @@ const calculateGifUrl = (limit, searchTerm, offset) => {
     }
 }
 
-const getFromApi = (dispatch, state) => (successAction, failureAction) => {
-    const { gifsRequired, searchTerm, loadedGifList } = state;
+const getFromApi = (dispatch, { gifsRequired, searchTerm, loadedGifList }) => (successAction, failureAction) => {
     const offset = loadedGifList.length;
-
     const url = calculateGifUrl(gifsRequired, searchTerm, offset)
     return fetch(url)
         .then(res => res.json())
-        .then(res => {
-            gifResponseToGifUrlList(res);
-        })
+        .then(gifResponseToGifUrlList)
         .then(res => {
             dispatch(successAction(res))
         })
