@@ -8,7 +8,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Loading Component tests', () => {
     const setup = (setupProps) => shallow(<LoadingComponent {...setupProps} />);
     it('renders a div with a class name of loading-section', () => {
-        const component = setup();
+        const component = setup({ loadedGifList: [] });
         const expected = component.find('div').first()
         expect(expected.hasClass('loading-section')).toBe(true);
     });
