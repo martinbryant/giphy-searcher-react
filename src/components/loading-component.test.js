@@ -8,7 +8,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Loading Component tests', () => {
     const setup = (setupProps) => shallow(<LoadingComponent {...setupProps} />);
     it('renders a div with a class name of loading-section', () => {
-        const component = setup({ loadedGifList: [] });
+        const component = setup({ loadedGifList: [], loadingError: '' });
         const expected = component.find('div').first()
         expect(expected.hasClass('loading-section')).toBe(true);
     });
@@ -17,7 +17,7 @@ describe('Loading Component tests', () => {
             loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
                 'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
             loading: false,
-            loadingError: false
+            loadingError: ''
         });
         const expected = component.find('.load-more-button');
         expect(expected.exists()).toBe(true);
@@ -27,7 +27,7 @@ describe('Loading Component tests', () => {
             loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
                 'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
             loading: true,
-            loadingError: false
+            loadingError: ''
         });
         const expected = component.find('.load-more-button');
         expect(expected.exists()).toBe(false);
@@ -37,7 +37,7 @@ describe('Loading Component tests', () => {
             loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
                 'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
             loading: false,
-            loadingError: Error('The returned network error')
+            loadingError: 'The returned network error'
         });
         const expected = component.find('.load-more-button');
         expect(expected.exists()).toBe(false);
@@ -46,7 +46,7 @@ describe('Loading Component tests', () => {
         const component = setup({
             loadedGifList: [],
             loading: false,
-            loadingError: false
+            loadingError: ''
         });
         const expected = component.find('.load-more-button');
         expect(expected.exists()).toBe(false);
@@ -55,7 +55,7 @@ describe('Loading Component tests', () => {
         const component = setup({
             loadedGifList: [],
             loading: true,
-            loadingError: false
+            loadingError: ''
         });
         const expected = component.find('.spinner');
         expect(expected.exists()).toBe(true);
@@ -65,7 +65,7 @@ describe('Loading Component tests', () => {
         const component = setup({
             loadedGifList: [],
             loading: false,
-            loadingError: false
+            loadingError: ''
         });
         const expected = component.find('.spinner');
         expect(expected.exists()).toBe(false);
@@ -74,11 +74,19 @@ describe('Loading Component tests', () => {
         const component = setup({
             loadedGifList: [],
             loading: false,
-            loadingError: Error('The returned network error')
+            loadingError: 'The returned network error'
         });
         const expected = component.find('.error-message');
         expect(expected.exists()).toBe(true);
     })
-    it('does not render an error if there is no error')
+    it('does not render an error if there is no error', () => {
+        const component = setup({
+            loadedGifList: [],
+            loading: false,
+            loadingError: ''
+        });
+        const expected = component.find('.error-message');
+        expect(expected.exists()).toBe(false);
+    })
 
 })
