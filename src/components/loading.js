@@ -11,9 +11,9 @@ const mapStateToProps = ({ loadedGifList, loadingError, loadingStatus }) => {
 
 }
 
-const mapDispatchToProps = (state) => {
+const mapDispatchToProps = () => ({
 
-}
+})
 
 export const Loading = connect(mapStateToProps, mapDispatchToProps)(LoadingComponent);
 
