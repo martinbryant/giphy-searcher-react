@@ -12,4 +12,9 @@ describe('SearchForm Component tests', () => {
         const expected = component.find('.search')
         expect(expected.exists()).toBe(true);
     })
+    it('renders a div with a class name of search-form', () => {
+        const component = setup({});
+        const expected = component.find('.search-form')
+        expect(expected.exists()).toBe(true);
+    })
 })
