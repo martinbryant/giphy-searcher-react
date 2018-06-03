@@ -28,4 +28,15 @@ describe('Result Display Component tests', () => {
         const expected = component.find('.result-grid')
         expect(expected.exists()).toBe(false)
     })
+    it('renders the correct number of gifs with a class name of gif', () => {
+        const loadedGifList = ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+            'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif']
+        const component = setup({
+            loadedGifList
+        });
+        const expected = component.find('.result-grid').find('img');
+        expect(expected.length).toBe(2);
+        expect(expected[0].hasClass('gif')).toBe(true)
+        expect(expected[0].find([src = loadedGifList[0]])).exists().toBe(true)
+    })
 })
