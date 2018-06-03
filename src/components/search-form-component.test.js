@@ -13,11 +13,14 @@ describe('SearchForm Component tests', () => {
         expect(expected.exists()).toBe(true);
         expect(expected.is('div')).toBe(true);
     })
-    it('renders a form with a class name of search-form', () => {
-        const component = setup({});
+    it('renders a form with a class name of search-form and calls submitSearch onSubmit', () => {
+        const submitSearch = jest.fn()
+        const component = setup({ submitSearch });
         const expected = component.find('.search-form')
         expect(expected.exists()).toBe(true);
         expect(expected.is('form')).toBe(true)
+        expected.simulate('submit');
+        expect(submitSearch).toHaveBeenCalled()
     })
     it('renders a input with a class name of search-input and type of text', () => {
         const component = setup({});
