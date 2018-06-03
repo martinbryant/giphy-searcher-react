@@ -2,7 +2,7 @@ import React from 'react';
 
 const SearchFormComponent = () => {
     return (
-        <div></div>
+        <div className="search"></div>
     )
 }
 
