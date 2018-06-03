@@ -6,6 +6,7 @@ import expect from 'expect';
 
 
 import App from './App';
+import { Loading } from './components/loading'
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -43,7 +44,7 @@ describe('App component tests', () => {
     expect(component().find('div').filterWhere(n => n.hasClass('result-grid')).length).toBe(1);
   })
   it('renders a div with the class "loading-section"', () => {
-    expect(component().find('div').filterWhere(n => n.hasClass('loading-section')).length).toBe(1);
+    expect(component().find(Loading).length).toBe(1)
   })
 
 

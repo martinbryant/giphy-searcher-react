@@ -3,14 +3,11 @@ import { connect } from 'react-redux';
 import LoadingComponent from './loading-component';
 import { getMoreGifsStarted } from '../actions/actions'
 
-const mapStateToProps = ({ loadedGifList, loadingError, loadingStatus }) => {
-    return {
-        loadedGifList,
-        loadingError,
-        loadingStatus
-    }
-
-}
+const mapStateToProps = ({ loadedGifList, loadingError, loadingStatus }) => ({
+    loadedGifList,
+    loadingError,
+    loadingStatus
+})
 
 const mapDispatchToProps = () => ({
     loadMoreGifs: getMoreGifsStarted

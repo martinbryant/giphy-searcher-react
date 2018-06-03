@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { Loading } from './components/loading'
+
 class App extends Component {
   render() {
     return (
@@ -19,8 +21,7 @@ class App extends Component {
           <div className="result-grid">
           </div>
         </div>
-        <div className="loading-section">
-        </div>
+        <Loading />
       </div>
     );
   }
