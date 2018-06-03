@@ -13,4 +13,13 @@ describe('Result Display Component tests', () => {
         const expected = component.find('.result-display')
         expect(expected.exists()).toBe(true)
     })
+    it('renders a div with a class name of result-grid if gifs exists', () => {
+        const component = setup({
+            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif']
+        });
+        const expected = component.find('.result-grid')
+        expect(expected.exists()).toBe(true)
+    })
+
 })
