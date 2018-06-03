@@ -21,5 +21,11 @@ describe('Result Display Component tests', () => {
         const expected = component.find('.result-grid')
         expect(expected.exists()).toBe(true)
     })
-
+    it('does not render a div with class name of result-grid if gifList empty', () => {
+        const component = setup({
+            loadedGifList: []
+        });
+        const expected = component.find('.result-grid')
+        expect(expected.exists()).toBe(false)
+    })
 })
