@@ -12,7 +12,7 @@ const mapDispatchToProps = () => ({
 
 })
 
-export const ResultDisplay = connect(mapStateToProps, mapDispatchToProps)(SearchFormComponent);
+export const SearchForm = connect(mapStateToProps, mapDispatchToProps)(SearchFormComponent);
 
 export {
     mapStateToProps,

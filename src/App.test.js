@@ -8,6 +8,7 @@ import expect from 'expect';
 import App from './App';
 import { Loading } from './components/loading'
 import { ResultDisplay } from './components/result-display'
+import { SearchForm } from './components/search-form';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -23,20 +24,8 @@ describe('App component tests', () => {
   it('renders an h1 tag with the text "Giphy Searcher"', () => {
     expect(component().find('h1').first().text()).toBe('Giphy Searcher');
   });
-  it('renders a div with the class "search"', () => {
-    expect(component().find('div').filterWhere(n => n.hasClass('search')).length).toBe(1);
-  })
-  it('renders a form with the class "search-form" ', () => {
-    expect(component().find('form').first().hasClass('search-form')).toBe(true);
-  })
-  it('renders an input with the class "search-input" and type "text"', () => {
-    expect(component().find('input').filterWhere(n => n.hasClass('search-input') && n.is('[type="text"]')).length).toBe(1);
-  })
-  it('renders an input with the class "search-button", type "submit", text "Search Giphy"', () => {
-    expect(component().find('input').filterWhere(n =>
-      n.hasClass('search-button') &&
-      n.is('[type="submit"]') &&
-      n.text('Search Giphy')).length).toBe(1);
+  it('renders the search-form component', () => {
+    expect(component().find(SearchForm).exists()).toBe(true);
   })
   it('renders the results-display component', () => {
     expect(component().find(ResultDisplay).exists()).toBe(true);

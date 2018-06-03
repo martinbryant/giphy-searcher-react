@@ -4,6 +4,7 @@ import './App.css';
 
 import { Loading } from './components/loading'
 import { ResultDisplay } from './components/result-display'
+import { SearchForm } from './components/search-form';
 
 class App extends Component {
   render() {
@@ -12,12 +13,7 @@ class App extends Component {
         <div className="title">
           <h1>Giphy Searcher</h1>
         </div>
-        <div className="search">
-          <form className="search-form">
-            <input className="search-input" type="text" />
-            <input className="search-button" type="submit">Search Giphy</input>
-          </form>
-        </div>
+        <SearchForm />
         <ResultDisplay />
         <Loading />
       </div>
