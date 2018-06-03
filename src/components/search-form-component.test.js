@@ -15,12 +15,20 @@ describe('SearchForm Component tests', () => {
     })
     it('renders a form with a class name of search-form and calls submitSearch onSubmit', () => {
         const submitSearch = jest.fn()
+        const preventDefault = jest.fn()
         const component = setup({ submitSearch });
         const expected = component.find('.search-form')
         expect(expected.exists()).toBe(true);
         expect(expected.is('form')).toBe(true)
-        expected.simulate('submit');
-        expect(submitSearch).toHaveBeenCalled()
+        const eventObject = {
+            preventDefault,
+            target: {
+                value: 'search'
+            }
+        }
+        expected.simulate('submit', eventObject);
+        expect(preventDefault).toHaveBeenCalled();
+        expect(submitSearch).toHaveBeenCalledWith('search')
     })
     it('renders a input with a class name of search-input and type of text', () => {
         const component = setup({});
