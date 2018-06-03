@@ -25,4 +25,10 @@ describe('SearchForm Component tests', () => {
             && n.is('[type="text"]'))
         expect(expected.exists()).toBe(true);
     })
+    it('renders a input with a class name of search-button and type of submit', () => {
+        const component = setup({});
+        const expected = component.find('input').filterWhere(n => n.hasClass('search-button')
+            && n.is('[type="submit"]'))
+        expect(expected.exists()).toBe(true);
+    })
 })
