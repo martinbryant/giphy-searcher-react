@@ -18,7 +18,7 @@ describe('Loading tests', () => {
     });
     it('mapDispatchToProps should return correct props', () => {
         const expected = {
-            loadMoreGifs: (e) => submitSearch(e.target.value)
+            submitSearch
         }
         expect(container.mapDispatchToProps()).toEqual(expected);
     })

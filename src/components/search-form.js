@@ -1,11 +1,14 @@
 import { connect } from 'react-redux';
 
 import SearchFormComponent from './search-form-component';
+import { submitSearch } from '../actions/actions'
 
-const mapStateToProps = () => ({
+const mapStateToProps = ({ searchError }) => ({
+    searchError
 })
 
 const mapDispatchToProps = () => ({
+    submitSearch
 
 })
 
