@@ -2,8 +2,12 @@ import { connect } from 'react-redux';
 
 import LoadingComponent from './loading-component';
 
-const mapStateToProps = (state) => {
-    return {}
+const mapStateToProps = ({ loadedGifList, loadingError, loadingStatus }) => {
+    return {
+        loadedGifList,
+        loadingError,
+        loadingStatus
+    }
 
 }
 

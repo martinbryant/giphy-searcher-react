@@ -15,6 +15,6 @@ describe('Loading tests', () => {
             loadingError: '',
             loadingStatus: false
         }
-        expect(container.mapStateToProps(state)).toBe(expected);
+        expect(container.mapStateToProps(state)).toEqual(expected);
     })
 })
