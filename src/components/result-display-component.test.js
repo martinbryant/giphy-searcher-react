@@ -36,7 +36,8 @@ describe('Result Display Component tests', () => {
         });
         const expected = component.find('.result-grid').find('img');
         expect(expected.length).toBe(2);
-        expect(expected[0].hasClass('gif')).toBe(true)
-        expect(expected[0].find([src = loadedGifList[0]])).exists().toBe(true)
+        expect(expected.first().hasClass('gif')).toBe(true)
+        expect(expected.first()
+            .find('[src="https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif"]').exists()).toBe(true)
     })
 })
