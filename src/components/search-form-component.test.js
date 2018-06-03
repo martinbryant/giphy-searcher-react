@@ -34,4 +34,9 @@ describe('SearchForm Component tests', () => {
             && n.is('[type="submit"]'))
         expect(expected.exists()).toBe(true);
     })
+    it('renders a div with a class name of search-error if there is a search error', () => {
+        const component = setup({ searchError: 'Search Error' });
+        const expected = component.find('search-error')
+        expect(expected.exists()).toBe(true);
+    })
 })
