@@ -2,7 +2,8 @@ import React from 'react'
 
 const ResultDisplayComponent = () => {
     return (
-        <div></div>
+        <div className="result-display">
+        </div>
     )
 }
 
