@@ -7,8 +7,10 @@ const SearchFormComponent = ({ searchError, submitSearch }) => {
                 <input className="search-input" type="text" />
                 <input className="search-button" type="submit" />
             </form>
-            <div className="search-error">{searchError}
-            </div>
+            {searchError &&
+                <div className="search-error">{searchError}
+                </div>
+            }
         </div>
     )
 }
