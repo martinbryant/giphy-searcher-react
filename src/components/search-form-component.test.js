@@ -36,7 +36,8 @@ describe('SearchForm Component tests', () => {
     })
     it('renders a div with a class name of search-error if there is a search error', () => {
         const component = setup({ searchError: 'Search Error' });
-        const expected = component.find('search-error')
+        const expected = component.find('.search-error')
         expect(expected.exists()).toBe(true);
+        expect(expected.text()).toBe('Search Error');
     })
 })
