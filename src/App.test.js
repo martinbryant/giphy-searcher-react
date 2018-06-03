@@ -7,6 +7,7 @@ import expect from 'expect';
 
 import App from './App';
 import { Loading } from './components/loading'
+import { ResultDisplay } from './components/result-display'
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -37,14 +38,11 @@ describe('App component tests', () => {
       n.is('[type="submit"]') &&
       n.text('Search Giphy')).length).toBe(1);
   })
-  it('renders a div with the class "result-display"', () => {
-    expect(component().find('div').filterWhere(n => n.hasClass('result-display')).length).toBe(1);
+  it('renders the results-display component', () => {
+    expect(component().find(ResultDisplay).exists()).toBe(true);
   })
-  it('renders a div with the class "result-grid"', () => {
-    expect(component().find('div').filterWhere(n => n.hasClass('result-grid')).length).toBe(1);
-  })
-  it('renders a div with the class "loading-section"', () => {
-    expect(component().find(Loading).length).toBe(1)
+  it('renders the loading component', () => {
+    expect(component().find(Loading).exists()).toBe(true)
   })
 
 

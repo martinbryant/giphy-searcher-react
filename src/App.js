@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import { Loading } from './components/loading'
+import { ResultDisplay } from './components/result-display'
 
 class App extends Component {
   render() {
@@ -17,10 +18,7 @@ class App extends Component {
             <input className="search-button" type="submit">Search Giphy</input>
           </form>
         </div>
-        <div className="result-display">
-          <div className="result-grid">
-          </div>
-        </div>
+        <ResultDisplay />
         <Loading />
       </div>
     );
