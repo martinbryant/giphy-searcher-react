@@ -1,10 +1,12 @@
 import React from 'react'
 
-const ResultDisplayComponent = () => {
+const ResultDisplayComponent = ({ loadedGifList }) => {
     return (
         <div className="result-display">
-            <div className="result-grid">
-            </div>
+            {loadedGifList.length > 0 &&
+                <div className="result-grid">
+                </div>
+            }
         </div>
     )
 }
