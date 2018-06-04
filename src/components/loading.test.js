@@ -18,6 +18,23 @@ describe('Loading tests', () => {
         }
         expect(container.mapStateToProps(state)).toEqual(expected);
     });
+    it('mapStateToProps should return isTrendingSearch true when empty searchTerm', () => {
+        const state = {
+            searchTerm: '',
+            searchError: '',
+            gifsRequired: 5,
+            loadedGifList: [],
+            loadingError: '',
+            loadingStatus: false
+        }
+        const expected = {
+            loadedGifList: [],
+            loadingError: '',
+            loadingStatus: false,
+            isTrendingSearch: true
+        }
+        expect(container.mapStateToProps(state)).toEqual(expected);
+    })
     it('mapDispatchToProps should return correct props', () => {
         const expected = {
             loadMoreGifs: getMoreGifsStarted
