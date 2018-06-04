@@ -5,10 +5,10 @@ const SearchFormComponent = ({ searchError, submitSearch }) => {
         <div className="search">
             <form className="search-form" onSubmit={(e) => {
                 e.preventDefault();
-                submitSearch(e.target.value);
+                submitSearch(e.target[0].value);
             }}>
                 <input className="search-input" type="text" />
-                <input className="search-button" type="submit">Search Giphy</input>
+                <input className="search-button" type="submit" value="Search" />
             </form>
             {searchError &&
                 <div className="search-error">{searchError}
