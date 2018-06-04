@@ -20,6 +20,6 @@ describe('Loading tests', () => {
         const expected = {
             submitSearch
         }
-        expect(container.mapDispatchToProps()).toEqual(expected);
+        expect(container.mapDispatchToProps).toEqual(expected);
     })
 })

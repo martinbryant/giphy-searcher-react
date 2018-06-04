@@ -7,10 +7,9 @@ const mapStateToProps = ({ searchError }) => ({
     searchError
 })
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = {
     submitSearch
-
-})
+}
 
 export const SearchForm = connect(mapStateToProps, mapDispatchToProps)(SearchFormComponent);
 
