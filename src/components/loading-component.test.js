@@ -57,6 +57,17 @@ describe('Loading Component tests', () => {
         const expected = component.find('.load-more-button');
         expect(expected.exists()).toBe(false);
     })
+    it('does not render load more button if isTrendingSearch', () => {
+        const component = setup({
+            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
+                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
+            loading: false,
+            loadingError: '',
+            isTrendingSearch: true
+        });
+        const expected = component.find('.load-more-button');
+        expect(expected.exists()).toBe(false);
+    })
     it('renders a spinner if loading', () => {
         const component = setup({
             loadedGifList: [],
