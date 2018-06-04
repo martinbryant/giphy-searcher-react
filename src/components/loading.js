@@ -7,7 +7,7 @@ const mapStateToProps = ({ loadedGifList, loadingError, loadingStatus, searchTer
     loadedGifList,
     loadingError,
     loadingStatus,
-    isTrendingSearch: true
+    isTrendingSearch: searchTerm === ''
 })
 
 const mapDispatchToProps = {
