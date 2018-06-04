@@ -22,6 +22,6 @@ describe('Loading tests', () => {
         const expected = {
             loadMoreGifs: getMoreGifsStarted
         }
-        expect(container.mapDispatchToProps()).toEqual(expected);
+        expect(container.mapDispatchToProps).toEqual(expected);
     })
 })
