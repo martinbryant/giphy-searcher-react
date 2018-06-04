@@ -22,9 +22,9 @@ describe('SearchForm Component tests', () => {
         expect(expected.is('form')).toBe(true)
         const eventObject = {
             preventDefault,
-            target: {
+            target: [{
                 value: 'search'
-            }
+            }]
         }
         expected.simulate('submit', eventObject);
         expect(preventDefault).toHaveBeenCalled();
