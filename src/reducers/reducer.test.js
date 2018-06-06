@@ -53,7 +53,7 @@ describe('Reducer tests', () => {
             loadingStatus: false
         }
         const action = {
-            type: 'SUBMIT_SEARCH_FAILURE',
+            type: 'SUBMIT_SEARCH_ERROR',
             searchError: 'Search cannot be blank'
         }
         expect(reducer(state, action)).toEqual(expected);
