@@ -72,8 +72,7 @@ describe('Reducer tests', () => {
             searchTerm: 'old search',
             searchError: '',
             gifsRequired: 5,
-            loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
-                'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
+            loadedGifList: [],
             loadingError: '',
             loadingStatus: true
         }
