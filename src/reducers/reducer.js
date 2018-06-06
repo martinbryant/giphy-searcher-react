@@ -24,6 +24,8 @@ const gifsRequired = (state = 5, action) => state
 
 const loadedGifList = (state = [], action) => {
     switch (action.type) {
+        case 'GET_NEW_GIFS_STARTED':
+            return [];
         case 'GET_NEW_GIFS_SUCCESS':
         case 'GET_TRENDING_GIFS_SUCCESS':
             return action.gifList;
