@@ -11,7 +11,7 @@ const searchTerm = (state = "", action) => {
 
 const searchError = (state = "", action) => {
     switch (action.type) {
-        case 'SUBMIT_SEARCH_FAILURE':
+        case 'SUBMIT_SEARCH_ERROR':
             return action.searchError
         case 'SUBMIT_SEARCH_SUCCESS':
             return ''
