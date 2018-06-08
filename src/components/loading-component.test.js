@@ -17,7 +17,7 @@ describe('Loading Component tests', () => {
         const component = setup({
             loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
                 'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
-            loading: false,
+            loadingStatus: false,
             loadingError: '',
             loadMoreGifs
         });
@@ -32,7 +32,7 @@ describe('Loading Component tests', () => {
         const component = setup({
             loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
                 'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
-            loading: true,
+            loadingStatus: true,
             loadingError: ''
         });
         const expected = component.find('.load-more-button');
@@ -42,7 +42,7 @@ describe('Loading Component tests', () => {
         const component = setup({
             loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
                 'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
-            loading: false,
+            loadingStatus: false,
             loadingError: 'The returned network error'
         });
         const expected = component.find('.load-more-button');
@@ -51,7 +51,7 @@ describe('Loading Component tests', () => {
     it('does not render load more button when there are no gifs', () => {
         const component = setup({
             loadedGifList: [],
-            loading: false,
+            loadingStatus: false,
             loadingError: ''
         });
         const expected = component.find('.load-more-button');
@@ -61,7 +61,7 @@ describe('Loading Component tests', () => {
         const component = setup({
             loadedGifList: ['https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif',
                 'https://media3.giphy.com/media/39qyWO7EM4Ov3fjyuj/200_d.gif'],
-            loading: false,
+            loadingStatus: false,
             loadingError: '',
             isTrendingSearch: true
         });
@@ -71,7 +71,7 @@ describe('Loading Component tests', () => {
     it('renders a spinner if loading', () => {
         const component = setup({
             loadedGifList: [],
-            loading: true,
+            loadingStatus: true,
             loadingError: ''
         });
         const expected = component.find('.spinner');
@@ -81,7 +81,7 @@ describe('Loading Component tests', () => {
     it('does not render a spinner if not loading', () => {
         const component = setup({
             loadedGifList: [],
-            loading: false,
+            loadingStatus: false,
             loadingError: ''
         });
         const expected = component.find('.spinner');
@@ -90,7 +90,7 @@ describe('Loading Component tests', () => {
     it('renders an error if there is a loading error', () => {
         const component = setup({
             loadedGifList: [],
-            loading: false,
+            loadingStatus: false,
             loadingError: 'The returned network error'
         });
         const expected = component.find('.error-message');
@@ -100,7 +100,7 @@ describe('Loading Component tests', () => {
     it('does not render an error if there is no error', () => {
         const component = setup({
             loadedGifList: [],
-            loading: false,
+            loadingStatus: false,
             loadingError: ''
         });
         const expected = component.find('.error-message');
