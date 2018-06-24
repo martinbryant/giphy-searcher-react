@@ -30,14 +30,14 @@ describe('Reducer tests', () => {
             loadingStatus: false
         }
         const action = {
-            type: 'SUBMIT_SEARCH_SUCCESS',
+            type: 'SUBMIT_SEARCH',
             searchTerm: 'good search'
         }
         expect(reducer(state, action)).toEqual(expected);
     })
     it('handles search error', () => {
         const state = {
-            searchTerm: '',
+            searchTerm: 'bad search',
             searchError: '',
             gifsRequired: 5,
             loadedGifList: [],

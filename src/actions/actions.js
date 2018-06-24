@@ -3,11 +3,6 @@ export const submitSearch = searchTerm => ({
     searchTerm
 });
 
-export const submitSearchSuccess = searchTerm => ({
-    type: 'SUBMIT_SEARCH_SUCCESS',
-    searchTerm
-});
-
 export const submitSearchError = searchError => ({
     type: 'SUBMIT_SEARCH_ERROR',
     searchError

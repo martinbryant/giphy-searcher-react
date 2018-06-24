@@ -1,25 +1,11 @@
 import * as actions from '../actions/actions';
 
-export const searchMiddleware = ({ dispatch, getState }) => next => action => {
+export const api = ({ getState }) => next => action => {
     next(action);
 
-    const getFromApiWithStore = getFromApi(dispatch, getState());
+    const getFromApiWithStore = getFromApi(next, getState());
 
     switch (action.type) {
-        case 'SUBMIT_SEARCH':
-            {
-                let searchError = validateSearchTerm(action.searchTerm)
-                searchError
-                    ? dispatch(actions.submitSearchError(searchError))
-                    : dispatch(actions.submitSearchSuccess(action.searchTerm))
-                break;
-            }
-        case 'SUBMIT_SEARCH_SUCCESS':
-            {
-                dispatch(actions.getNewGifsStarted(action.searchTerm));
-                break;
-            }
-
         case 'GET_NEW_GIFS_STARTED':
             {
                 const { getNewGifsSuccess, getNewGifsFailure } = actions;
@@ -38,8 +24,6 @@ export const searchMiddleware = ({ dispatch, getState }) => next => action => {
         default: break
     }
 }
-
-const validateSearchTerm = searchTerm => searchTerm === '' ? 'Search term cannot be blank!' : ''
 
 const gifResponseToGifUrlList = gifResponse => {
     try {
@@ -66,23 +50,22 @@ const calculateGifUrl = (limit, searchTerm, offset) => {
     }
 }
 
-const getFromApi = (dispatch, { gifsRequired, searchTerm, loadedGifList }) => (successAction, failureAction) => {
-    const dispatchSuccess = res => dispatch(successAction(res))
-    const dispatchFailure = err => dispatch(failureAction(err));
+const getFromApi = (next, { gifsRequired, searchTerm, loadedGifList }) => (successAction, failureAction) => {
+    const nextSuccess = res => next(successAction(res))
+    const nextFailure = err => next(failureAction(err));
     const offset = loadedGifList.length;
     const url = calculateGifUrl(gifsRequired, searchTerm, offset)
     return fetch(url)
         .then(convertToJson)
         .then(gifResponseToGifUrlList)
-        .then(dispatchSuccess)
-        .catch(dispatchFailure)
+        .then(nextSuccess)
+        .catch(nextFailure)
 }
 
 const convertToJson = res => res.json();
 
 export {
     gifResponseToGifUrlList,
-    validateSearchTerm,
     calculateGifUrl,
     getFromApi
 }

@@ -13,13 +13,6 @@ describe('Action creator tests ', () => {
         }
         expect(actions.submitSearch('new search')).toEqual(expected);
     });
-    it('creates an action for Search Success', () => {
-        const expected = {
-            type: 'SUBMIT_SEARCH_SUCCESS',
-            searchTerm: 'good search'
-        }
-        expect(actions.submitSearchSuccess('good search')).toEqual(expected);
-    })
     it('creates an action for Search Error', () => {
         const expected = {
             type: 'SUBMIT_SEARCH_ERROR',

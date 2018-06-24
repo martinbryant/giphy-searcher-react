@@ -1,9 +1,9 @@
 import fetchMock from 'fetch-mock';
 
-import * as mid from './middleware'
+import * as mid from './api-middleware'
 import * as actions from '../actions/actions'
 
-describe('Search Middleware tests', () => {
+describe('API Middleware tests', () => {
     let next, dispatch, getState, middleware;
     beforeEach(() => {
         next = jest.fn();
@@ -16,7 +16,7 @@ describe('Search Middleware tests', () => {
             loadingError: {},
             loadingStatus: false
         });
-        middleware = mid.searchMiddleware({ dispatch, getState })(next);
+        middleware = mid.api({ dispatch, getState })(next);
     })
     afterEach(() => {
         fetchMock.restore()
@@ -33,9 +33,9 @@ describe('Search Middleware tests', () => {
             type: 'NON-API-ACTION'
         }
         middleware(action);
-        expect(dispatch.mock.calls.length).toEqual(0);
+        expect(dispatch).toHaveBeenCalledTimes(0);
     })
-    it('should call dispatch with getNewGifsSuccess action', () => {
+    it('should call next with getNewGifsSuccess action', () => {
         const action = {
             type: 'GET_NEW_GIFS_STARTED'
         };
@@ -43,8 +43,11 @@ describe('Search Middleware tests', () => {
             type: 'GET_NEW_GIFS_SUCCESS'
         }
         fetchMock.get('*', { body: gifRes });
+
         return middleware(action).then(() => {
-            expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
+            expect(next).toHaveBeenCalledTimes(2)
+            let nextArgs = next.mock.calls[1][0]
+            expect(nextArgs).toMatchObject(expected)
         });
     })
     it('should call dispatch with getNewGifsFailure action', () => {
@@ -56,7 +59,9 @@ describe('Search Middleware tests', () => {
         }
         fetchMock.get('*', { status: 404 })
         return middleware(action).then(() => {
-            expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
+            expect(next).toHaveBeenCalledTimes(2)
+            let nextArgs = next.mock.calls[1][0]
+            expect(nextArgs).toMatchObject(expected)
         });
     })
     it('should call dispatch with getMoreGifsSuccess action', () => {
@@ -68,7 +73,9 @@ describe('Search Middleware tests', () => {
         }
         fetchMock.get('*', { body: gifRes });
         return middleware(action).then(() => {
-            expect(dispatch.mock.calls[0][0]).toMatchObject(expected);
+            expect(next).toHaveBeenCalledTimes(2)
+            let nextArgs = next.mock.calls[1][0]
+            expect(nextArgs).toMatchObject(expected)
         });
     });
     it('should call dispatch with getMoreGifsFailure action', () => {
@@ -80,7 +87,9 @@ describe('Search Middleware tests', () => {
         }
         fetchMock.get('*', { status: 404 })
         return middleware(action).then(() => {
-            expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
+            expect(next).toHaveBeenCalledTimes(2)
+            let nextArgs = next.mock.calls[1][0]
+            expect(nextArgs).toMatchObject(expected)
         });
     })
     it('should call dispatch with getTrendingGifsSuccess action', () => {
@@ -92,7 +101,9 @@ describe('Search Middleware tests', () => {
         }
         fetchMock.get('*', { body: gifRes });
         return middleware(action).then(() => {
-            expect(dispatch.mock.calls[0][0]).toMatchObject(expected);
+            expect(next).toHaveBeenCalledTimes(2)
+            let nextArgs = next.mock.calls[1][0]
+            expect(nextArgs).toMatchObject(expected)
         });
     });
     it('should call dispatch with getTrendingGifsFailure action', () => {
@@ -104,42 +115,12 @@ describe('Search Middleware tests', () => {
         }
         fetchMock.get('*', { status: 404 })
         return middleware(action).then(() => {
-            expect(dispatch.mock.calls[0][0]).toMatchObject(expected)
+            expect(next).toHaveBeenCalledTimes(2)
+            let nextArgs = next.mock.calls[1][0]
+            expect(nextArgs).toMatchObject(expected)
         });
-    })
-    it('should dispatch action for a validated search term', () => {
-        const action = {
-            type: 'SUBMIT_SEARCH',
-            searchTerm: 'good search'
-        }
-        const expected = {
-            type: 'SUBMIT_SEARCH_SUCCESS'
-        }
-        middleware(action);
-        expect(dispatch.mock.calls[0][0]).toMatchObject(expected);
-    })
-    it('should dispatch action for a search term error', () => {
-        const action = {
-            type: 'SUBMIT_SEARCH',
-            searchTerm: ''
-        }
-        const expected = {
-            type: 'SUBMIT_SEARCH_ERROR'
-        }
-        middleware(action);
-        expect(dispatch.mock.calls[0][0]).toMatchObject(expected);
-    })
-    it('should dispatch action for getNewGifsStarted on submitSearchSuccess action', () => {
-        const action = {
-            type: 'SUBMIT_SEARCH_SUCCESS',
-            searchTerm: 'good search'
-        }
-        const expected = {
-            type: 'GET_NEW_GIFS_STARTED'
-        }
-        middleware(action);
-        expect(dispatch.mock.calls[0][0]).toMatchObject(expected);
-    })
+    });
+
 });
 describe('gifResponseToGifUrlList tests ', () => {
     it('turns a valid gifResponse to an array of gif Urls', () => {

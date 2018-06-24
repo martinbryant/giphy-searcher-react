@@ -2,8 +2,10 @@ import { combineReducers } from 'redux';
 
 const searchTerm = (state = "", action) => {
     switch (action.type) {
-        case 'SUBMIT_SEARCH_SUCCESS':
+        case 'SUBMIT_SEARCH':
             return action.searchTerm
+        case 'SUBMIT_SEARCH_ERROR':
+            return ''
         default:
             return state
     }
@@ -13,7 +15,7 @@ const searchError = (state = "", action) => {
     switch (action.type) {
         case 'SUBMIT_SEARCH_ERROR':
             return action.searchError
-        case 'SUBMIT_SEARCH_SUCCESS':
+        case 'SUBMIT_SEARCH':
             return ''
         default:
             return state;
